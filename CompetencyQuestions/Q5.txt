@@ -1,0 +1,12 @@
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+
+SELECT ?season (AVG(?totalPoints) AS ?avgPointsPerGame)
+WHERE {
+  ?game a bball:Game ;
+        bball:hasSeason ?season ;
+        bball:hasHomeTeamScore ?homeTeamScore ;
+        bball:hasRoadTeamScore ?roadTeamScore .
+  BIND ((?homeTeamScore + ?roadTeamScore) AS ?totalPoints)
+}
+GROUP BY ?season
+ LIMIT 500

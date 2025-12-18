@@ -1,0 +1,19 @@
+SELECT DISTINCT ?guard (COUNT(DISTINCT ?game) AS ?gameCount)
+WHERE {
+?game bball:hasTeamBoxscore ?teamBoxscore .
+?teamBoxscore bball:hasPlayerParticipation ?playerParticipation .
+?playerParticipation bball:overPlayer ?player .
+?player bball:hasPosition "Guard" .
+?playerParticipation bball:hasPlayerStatline ?statline .
+?statline bball:points ?points .
+?statline bball:totalRebounds ?rebounds .
+?statline bball:assists ?assists .
+?statline bball:steals ?steals .
+?statline bball:blocks ?blocks .
+FILTER(?points >= 1 && ?rebounds >= 1 && ?assists >= 1
+&& ?steals >= 1 && ?blocks >= 1)
+?player rdfs:label ?guard .
+}
+GROUP BY ?guard
+ORDER BY DESC(?gameCount)
+LIMIT 1

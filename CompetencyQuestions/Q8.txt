@@ -1,0 +1,59 @@
+  PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+      PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+      PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+      PREFIX ent: <http://www.ics.forth.gr/isl/Basketball/entities/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      
+      SELECT DISTINCT ?coach ?label ?photo ?birth ?country 
+        (COUNT(DISTINCT ?game) AS ?gamesCoached)
+        (SUM(?win) AS ?totalWins)
+        (SUM(?loss) AS ?totalLosses)
+        (xsd:float(SUM(?win)) / xsd:float(COUNT(DISTINCT ?game)) * 100 AS ?winPercentage)
+        (AVG(?pointsScored) AS ?avgPointsScored)
+        (AVG(?pointsAllowed) AS ?avgPointsAllowed)
+      WHERE {
+        ?coach a bball:Coach .
+        ?coach rdfs:label ?label .
+        
+        
+        OPTIONAL { ?coach foaf:depiction ?photo . }
+        OPTIONAL { ?coach bball:hasBirthDate ?birth . }
+        OPTIONAL { ?coach bball:hasCountry ?country . }
+        
+        # Get coach statistics from games through team boxscore
+        ?game a bball:Game .
+        ?game bball:hasSeason ?season .
+        
+        FILTER(CONTAINS(STR(?game), "E2006"))
+        
+        
+        ?game bball:hasHomeTeamScore ?homeScore .
+        ?game bball:hasRoadTeamScore ?awayScore .
+        ?game bball:homeTeam ?homeTeam .
+        ?game bball:roadTeam ?roadTeam .
+        
+        # Get coach through team boxscore
+        ?game bball:hasTeamBoxscore ?boxscore .
+        ?boxscore bball:hasHeadCoach ?coach .
+        ?boxscore bball:overTeam ?coachedTeam .
+        ?boxscore bball:hasTeamStatline ?teamStatline .
+        ?teamStatline bball:points ?teamPoints .
+        
+        # Calculate wins and losses based on game results
+        BIND(IF((?coachedTeam = ?homeTeam && ?homeScore > ?awayScore) || 
+                (?coachedTeam = ?roadTeam && ?awayScore > ?homeScore), 1, 0) AS ?win)
+        BIND(IF((?coachedTeam = ?homeTeam && ?homeScore < ?awayScore) || 
+                (?coachedTeam = ?roadTeam && ?awayScore < ?homeScore), 1, 0) AS ?loss)
+        
+        # Use actual team points from statline for accurate averages
+        BIND(?teamPoints AS ?pointsScored)
+        
+        # Calculate points allowed by finding the opponent's score
+        BIND(IF(?coachedTeam = ?homeTeam, ?awayScore, ?homeScore) AS ?pointsAllowed)
+      }
+      GROUP BY ?coach ?label ?photo ?birth ?country
+      
+      HAVING (AVG(xsd:decimal(?pointsAllowed)) <= 73)
+      
+      ORDER BY ?label
+      LIMIT 50

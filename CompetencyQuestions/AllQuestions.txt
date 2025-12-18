@@ -1,0 +1,27 @@
+Q1 UC1 I want the average number of two points (or three points, or free throws)
+shots attempted (or made) per game grouped by season (both teams)
+Q2 UC1 I want the average percentage of home wins per season
+Q3 UC1 I want the average minutes per game per player for the seasons 2004-05,
+2014-15 and 2024-25
+Q4 UC1 I want the average attempted three points shots attempted from the
+teams of Zeljko Obradovic and Georgios Bartzokas per game per season
+Q5 UC1 I want the average number of points per game per season (both teams)
+Q6 UC2 Give me all the players based on this filtering: Season 2023-24,
+Height<2.00, Average PIR>15.0
+Q7 UC2 Show me all centers in the 2024-25 season with average total rebounds >
+5 and average blocks > 0.7.
+Q8 UC2 Show me all coaches of 2006-07 season that their teams allowed on
+average less than 73 points per game
+Q9 UC2 Give me all referees of 2024-25 with at least 20 games and a home team
+win percentage over 70%
+Q10 UC2 Give me all Greek players that are Forwards with 2.00<=height<=2.10
+Q11 UC3 I want all the Euroleague games where a Greek Player of height less than
+2.00 scored at least 15 points in a home game against a Russian team
+Q12 UC3 Which are the top-10 teams having won the most road games that was
+behind in the third quarter 5 or more points
+Q13 UC3 Give me the top-5 players having the most games with at least 7 assists
+and 1 or 0 turnovers
+Q14 UC3 Give me the winning percentage of each Greek team at home in 2020-21
+through the greek COVID lockdown dates
+Q15 UC3 Give me the Guard with the most games with at least 1 point, rebound,
+assist, steal and block

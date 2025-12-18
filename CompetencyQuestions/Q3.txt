@@ -1,0 +1,15 @@
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?player (AVG(?minutes) AS ?averageMinutes)
+WHERE {
+  ?game bball:hasSeason ?season .
+  ?season bball:startYear "2004"^^xsd:gYear ;
+          bball:endYear "2005"^^xsd:gYear .
+  ?game bball:hasTeamBoxscore ?teamBoxscore .
+  ?teamBoxscore bball:hasPlayerParticipation ?playerParticipation .
+  ?playerParticipation bball:overPlayer ?player ;
+                       bball:hasPlayerStatline ?statline .
+  ?statline bball:minutesPlayed ?minutes .
+}
+GROUP BY ?player

@@ -1,0 +1,17 @@
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?season (AVG(?homeWinPercentage) AS ?averageHomeWinPercentage)
+WHERE {
+  SELECT ?season (SUM(?homeWin) / (COUNT(?game) * xsd:double(1)) AS ?homeWinPercentage)
+  WHERE {
+    ?game a bball:Game ;
+          bball:hasSeason ?season ;
+          bball:homeTeam ?homeTeam ;
+          bball:winningTeam ?winningTeam .
+    BIND(IF(?homeTeam = ?winningTeam, 1, 0) AS ?homeWin)
+  }
+  GROUP BY ?season
+}
+GROUP BY ?season
+ LIMIT 500

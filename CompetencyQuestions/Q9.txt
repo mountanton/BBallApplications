@@ -1,0 +1,58 @@
+       PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+        PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+        PREFIX ent: <http://www.ics.forth.gr/isl/Basketball/entities/>
+        SELECT DISTINCT ?ref ?label ?photo ?birth ?country 
+          (COUNT(DISTINCT ?game) AS ?gamesRefereed)
+          (AVG(?totalPoints) AS ?avgTotalPoints)
+          (AVG(?pointDifference) AS ?avgPointDifference)
+          (AVG(?totalFouls) AS ?avgTotalFouls)
+          (xsd:float(SUM(?homeWin)) / xsd:float(COUNT(DISTINCT ?game)) * 100 AS ?homeWinPercentage)
+          (SUM(?overtimeGame) AS ?overtimeGames)
+          (AVG(?attendance) AS ?avgAttendance)
+        WHERE {
+          ?ref a bball:Referee .
+          ?ref rdfs:label ?label .
+          
+          
+          OPTIONAL { ?ref foaf:depiction ?photo . }
+          OPTIONAL { ?ref bball:hasBirthDate ?birth . }
+          OPTIONAL { ?ref bball:hasCountry ?country . }
+          
+          # Get referee statistics from games
+          ?game a bball:Game .
+          ?game bball:hasReferee ?ref .
+          ?game bball:hasHomeTeamScore ?homeScore .
+          ?game bball:hasRoadTeamScore ?awayScore .
+          ?game bball:hasAudience ?attendance .
+          ?game bball:hasExtraTime ?extraTime .
+          ?game bball:homeTeam ?homeTeam .
+          ?game bball:roadTeam ?awayTeam .
+          ?game bball:winningTeam ?winningTeam .
+          
+          # Calculate derived statistics
+          BIND((?homeScore + ?awayScore) AS ?totalPoints)
+          BIND(ABS(?homeScore - ?awayScore) AS ?pointDifference)
+          BIND(IF(?homeTeam = ?winningTeam, 1, 0) AS ?homeWin)
+          BIND(IF(?extraTime = true, 1, 0) AS ?overtimeGame)
+          
+          # For now, we'll estimate total fouls based on a simple formula
+          # This is an approximation - real foul data would come from player statistics
+          BIND((?homeScore + ?awayScore) / 2.5 AS ?totalFouls)
+          
+          # Apply season filter to games
+          FILTER(CONTAINS(STR(?game), "E2024"))
+          
+          # Apply phase filter if specified
+          
+          
+          # Apply most refereed team filter if specified
+          
+        }
+        GROUP BY ?ref ?label ?photo ?birth ?country
+        
+        HAVING (COUNT(DISTINCT ?game) >= 20 && (xsd:float(SUM(?homeWin)) / xsd:float(COUNT(DISTINCT ?game)) * 100) >= 70)
+        
+        ORDER BY ?label
+        LIMIT 50
+      

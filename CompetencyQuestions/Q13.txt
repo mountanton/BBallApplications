@@ -1,0 +1,18 @@
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?playerName (COUNT(DISTINCT ?game) AS ?gamesCount)
+WHERE {
+  ?game bball:hasTeamBoxscore ?teamBoxscore.
+  ?teamBoxscore bball:hasPlayerParticipation ?playerParticipation.
+  ?playerParticipation bball:overPlayer ?player.
+  ?player rdfs:label ?playerName.
+  ?playerParticipation bball:hasPlayerStatline ?statline.
+  ?statline bball:assists ?assists.
+  ?statline bball:turnovers ?turnovers.
+  FILTER(?assists >= 7)
+  FILTER(?turnovers <= 1)
+}
+GROUP BY ?playerName
+ORDER BY DESC(?gamesCount)
+LIMIT 5

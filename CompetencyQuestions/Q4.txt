@@ -1,0 +1,26 @@
+Q4
+SELECT ?season (AVG(?threePointsAttempted) AS ?averageThreePointsAttempted)
+WHERE {
+?game a bball:Game ;
+bball:hasTeamBoxscore ?teamBoxscore ;
+bball:hasSeason ?season .
+?teamBoxscore bball:hasHeadCoach ?coach ;
+bball:hasTeamStatline ?statline .
+?coach rdfs:label "Georgios Bartzokas" .
+?statline bball:fieldGoalsAttempted3 ?threePointsAttempted .
+}
+GROUP BY ?season
+
+
+SELECT ?season (AVG(?threePointsAttempted) AS ?averageThreePointsAttempted)
+WHERE {
+?game a bball:Game ;
+bball:hasTeamBoxscore ?teamBoxscore ;
+bball:hasSeason ?season .
+?teamBoxscore bball:hasHeadCoach ?coach ;
+bball:hasTeamStatline ?statline .
+?coach rdfs:label "Zeljko Obradovic" .
+?statline bball:fieldGoalsAttempted3 ?threePointsAttempted .
+}
+GROUP BY ?season
+

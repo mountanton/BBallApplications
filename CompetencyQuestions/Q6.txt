@@ -1,0 +1,19 @@
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?playerName AVG(?pir) 
+WHERE {
+    ?game bball:hasSeason ?season .
+    ?season rdfs:label "2023-24" .
+    ?game bball:hasTeamBoxscore ?teamBoxscore .
+    ?teamBoxscore bball:hasPlayerParticipation ?playerParticipation .
+    ?playerParticipation bball:overPlayer ?player .
+    ?player rdfs:label ?playerName .
+    ?player bball:hasHeight ?height .
+    FILTER(?height < 2.00) .
+    ?playerParticipation bball:hasPlayerStatline ?statline .
+    ?statline bball:PIR ?pir .
+    ?statline bball:minutesPlayed ?minutesPlayed .
+}
+GROUP BY ?playerName
+HAVING (AVG(?pir)>15.0)

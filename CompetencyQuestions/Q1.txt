@@ -1,0 +1,44 @@
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+
+SELECT ?seasonLabel (AVG(?totalFieldGoalsAttempted2) AS ?averageFieldGoalsAttempted2)
+WHERE {
+  ?game a bball:Game ;
+        bball:hasSeason ?season ;
+        bball:hasTeamBoxscore ?teamBoxscore1, ?teamBoxscore2 .
+
+  FILTER (?teamBoxscore1 != ?teamBoxscore2)
+
+  ?teamBoxscore1 bball:hasTeamStatline ?statline1 .
+  ?teamBoxscore2 bball:hasTeamStatline ?statline2 .
+
+  ?statline1 bball:fieldGoalsAttempted2 ?fieldGoalsAttempted2_1 .
+  ?statline2 bball:fieldGoalsAttempted2 ?fieldGoalsAttempted2_2 .
+
+  BIND((?fieldGoalsAttempted2_1 + ?fieldGoalsAttempted2_2) AS ?totalFieldGoalsAttempted2)
+
+  ?season rdfs:label ?seasonLabel .
+}
+GROUP BY ?seasonLabel
+ LIMIT 500
+ 
+ 
+ PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?season (AVG(?twoPointShotsMade) AS ?averageTwoPointShotsMade)
+WHERE {
+    ?game a bball:Game ;
+          bball:hasSeason ?season ;
+          bball:hasTeamBoxscore ?teamBoxscore1, ?teamBoxscore2 .
+    FILTER (?teamBoxscore1 != ?teamBoxscore2)
+    
+    ?teamBoxscore1 bball:hasTeamStatline ?statline1 .
+    ?teamBoxscore2 bball:hasTeamStatline ?statline2 .
+    
+    ?statline1 bball:fieldGoalsMade2 ?twoPointShotsMade1 .
+    ?statline2 bball:fieldGoalsMade2 ?twoPointShotsMade2 .
+    
+    BIND((?twoPointShotsMade1 + ?twoPointShotsMade2) AS ?twoPointShotsMade)
+}
+GROUP BY ?season
+ LIMIT 500

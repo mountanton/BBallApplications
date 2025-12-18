@@ -1,0 +1,30 @@
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?teamName (COUNT(DISTINCT ?game) AS ?wins)
+WHERE {
+  ?game a bball:Game ;
+        bball:winningTeam ?team ;
+        bball:roadTeam ?team ;
+        bball:hasTeamBoxscore ?boxscore1, ?boxscore2 ;
+        bball:hasPhase ?phase ;
+        bball:hasPhaseGroup ?phaseGroup .
+        
+  ?boxscore1 bball:overTeam ?team ;
+             bball:hasTeamStatline ?statline1 .
+             
+  ?boxscore2 bball:overTeam ?otherTeam ;
+             bball:hasTeamStatline ?statline2 .
+             
+  FILTER(?team != ?otherTeam)
+  
+  ?statline1 bball:endOfQuarter3points ?teamQ3Points .
+  ?statline2 bball:endOfQuarter3points ?otherTeamQ3Points .
+  
+  FILTER(?otherTeamQ3Points - ?teamQ3Points >= 5)
+  
+  ?team rdfs:label ?teamName .
+}
+GROUP BY ?teamName
+ORDER BY DESC(?wins)
+LIMIT 10

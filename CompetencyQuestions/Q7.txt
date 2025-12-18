@@ -1,0 +1,19 @@
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?playerName AVG(?totalRebounds) as ?reb AVG(?blocks) as ?blocks
+WHERE {
+  ?game bball:hasSeason ?season .
+  ?season rdfs:label "2024-25" .
+  ?game bball:hasTeamBoxscore ?teamBoxscore .
+  ?teamBoxscore bball:hasPlayerParticipation ?playerParticipation .
+  ?playerParticipation bball:overPlayer ?player .
+  ?playerParticipation bball:hasPlayerStatline ?playerStatline .
+  ?playerStatline bball:totalRebounds ?totalRebounds .
+  ?playerStatline bball:blocks ?blocks .
+  ?player bball:hasPosition "Center" .
+  ?player rdfs:label ?playerName .
+}
+GROUP BY ?playerName
+HAVING (AVG(?totalRebounds) > 5.0 && AVG(?blocks) > 0.7)
+ LIMIT 500

@@ -1,0 +1,30 @@
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?game
+WHERE {
+  ?game a bball:Game ;
+        bball:hasLeague ?league ;
+        bball:homeTeam ?homeTeam ;
+        bball:roadTeam ?roadTeam ;
+        bball:hasTeamBoxscore ?homeBoxscore .
+  
+  ?league rdfs:label "Euroleague" .
+  
+  ?homeBoxscore bball:hasPlayerParticipation ?participation .
+  ?participation bball:overPlayer ?player ;
+                 bball:hasPlayerStatline ?statline .
+  
+  ?player bball:wasBornIn ?country ;
+          bball:hasHeight ?height .
+  
+  ?country rdfs:label "Greece" .
+  
+  FILTER(?height < 2)
+  
+  ?statline bball:points ?points .
+  FILTER(?points >= 15)
+  
+  ?roadTeam bball:teamCountry ?roadCountry .
+  ?roadCountry rdfs:label "Russian Federation" .
+}

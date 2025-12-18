@@ -1,0 +1,52 @@
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?teamLabel (xsd:double(?wins) / ?totalGames AS ?winningPercentage)
+WHERE {
+  ?game a bball:Game ;
+        bball:hasSeason ?season ;
+        bball:homeTeam ?team ;
+        bball:winningTeam ?team ;
+        bball:hasDate ?date .
+  ?season bball:startYear "2020"^^xsd:gYear ;
+          bball:endYear "2021"^^xsd:gYear .
+  ?team rdfs:label ?teamLabel ;
+        bball:teamCountry ?country .
+  ?country rdfs:label "Greece" .
+  FILTER (?date >= "2020-11-07T00:00:00"^^xsd:dateTime && ?date <= "2021-05-14T23:59:59"^^xsd:dateTime)
+
+  {
+    SELECT ?team (COUNT(DISTINCT ?game) AS ?totalGames)
+    WHERE {
+      ?game a bball:Game ;
+            bball:hasSeason ?season ;
+            bball:homeTeam ?team ;
+            bball:hasDate ?date .
+      ?season bball:startYear "2020"^^xsd:gYear ;
+              bball:endYear "2021"^^xsd:gYear .
+      ?team bball:teamCountry ?country .
+      ?country rdfs:label "Greece" .
+      FILTER (?date >= "2020-11-07T00:00:00"^^xsd:dateTime && ?date <= "2021-05-14T23:59:59"^^xsd:dateTime)
+    }
+    GROUP BY ?team
+  }
+
+  {
+    SELECT ?team (COUNT(DISTINCT ?game) AS ?wins)
+    WHERE {
+      ?game a bball:Game ;
+            bball:hasSeason ?season ;
+            bball:homeTeam ?team ;
+            bball:winningTeam ?team ;
+            bball:hasDate ?date .
+      ?season bball:startYear "2020"^^xsd:gYear ;
+              bball:endYear "2021"^^xsd:gYear .
+      ?team bball:teamCountry ?country .
+      ?country rdfs:label "Greece" .
+      FILTER (?date >= "2020-11-07T00:00:00"^^xsd:dateTime && ?date <= "2021-05-14T23:59:59"^^xsd:dateTime)
+    }
+    GROUP BY ?team
+  }
+}
+GROUP BY ?teamLabel ?wins ?totalGames
+ LIMIT 500

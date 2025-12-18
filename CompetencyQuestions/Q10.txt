@@ -1,0 +1,14 @@
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?playerName
+WHERE {
+  ?player a bball:Player ;
+          rdfs:label ?playerName ;
+          bball:hasPosition "Forward" ;
+          bball:hasHeight ?height ;
+          bball:hasCountry ?country .
+  ?country rdfs:label "Greece" .
+  FILTER (?height >= 2.00 && ?height <= 2.10)
+}
+ LIMIT 500
