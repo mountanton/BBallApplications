@@ -42,7 +42,6 @@ Here, we demonstrate the *EuroLens* application, which is a prototype that enabl
 HoopProphets is a text-to-SPARQL application that accepts a natural language question as input and, by exploiting Large Language Model (LLM) prompts, generates the corresponding SPARQL query along with the answer retrieved from a SPARQL endpoint.
 
 
-**Demo Video:**
 [![HoopProphets Demo Video](https://img.youtube.com/vi/X6HCxxFDgXM/0.jpg)](https://www.youtube.com/watch?v=X6HCxxFDgXM)
 
 ---
