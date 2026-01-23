@@ -54,11 +54,10 @@ HoopProphets is a text-to-SPARQL application that accepts a natural language que
 Here, we demonstrate the *EuroLens-LLM* application, which is a prototype that enables users to perform a dialogue-based conversation through a text to SPARQL approach, and to retrieve their data in a human readable format.
 
 **Application Link:**
-[[https://demos.isl.ics.forth.gr/HoopProphets/apps/eurolensLLM](https://demos.isl.ics.forth.gr/HoopProphets/apps/eurolensLLM)]
+[https://demos.isl.ics.forth.gr/HoopProphets/apps/eurolensLLM](https://demos.isl.ics.forth.gr/HoopProphets/apps/eurolensLLM)]
 
 [![EuroLens-LLM Tutorial Video]()]()
 
-<img width="800" height="600" alt="EuroLLMs" src="https://github.com/user-attachments/assets/35d01f3e-c57f-45b1-9782-4995d64c66c2" />
 
 
 ## Evaluation of Text-to-SPARQL
