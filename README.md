@@ -41,21 +41,25 @@ Here, we demonstrate the *EuroLens* application, which is a prototype that enabl
 **Description:**
 HoopProphets is a text-to-SPARQL application that accepts a natural language question as input and, by exploiting Large Language Model (LLM) prompts, generates the corresponding SPARQL query along with the answer retrieved from a SPARQL endpoint.
 
+**Application Link:**
 [https://demos.isl.ics.forth.gr/HoopProphets](https://demos.isl.ics.forth.gr/HoopProphets)
+
 [![HoopProphets Demo Video](https://img.youtube.com/vi/X6HCxxFDgXM/0.jpg)](https://www.youtube.com/watch?v=X6HCxxFDgXM)
 
 ---
 
 ### EuroLens-LLM
-<img width="1235" height="947" alt="EuroLLMs" src="https://github.com/user-attachments/assets/35d01f3e-c57f-45b1-9782-4995d64c66c2" />
 
 **Description:**
 Here, we demonstrate the *EuroLens-LLM* application, which is a prototype that enables users to perform a dialogue-based conversation through a text to SPARQL approach, and to retrieve their data in a human readable format.
 
 **Application Link:**
-[[https://demos.isl.ics.forth.gr/HoopProphets/apps/eurolens](https://demos.isl.ics.forth.gr/HoopProphets/apps/eurolensLLM)]([https://demos.isl.ics.forth.gr/HoopProphets/apps/eurolens](https://demos.isl.ics.forth.gr/HoopProphets/apps/eurolensLLM))
+[[https://demos.isl.ics.forth.gr/HoopProphets/apps/eurolensLLM](https://demos.isl.ics.forth.gr/HoopProphets/apps/eurolensLLM)]
 
 [![EuroLens-LLM Tutorial Video]()]()
+
+<img width="800" height="600" alt="EuroLLMs" src="https://github.com/user-attachments/assets/35d01f3e-c57f-45b1-9782-4995d64c66c2" />
+
 
 ## Evaluation of Text-to-SPARQL
 The evaluation framework and results for the Text-to-SPARQL approach can be found in https://github.com/mountanton/BasketballQA 
