@@ -56,7 +56,7 @@ Here, we demonstrate the *EuroLens-Chat* application, which is a prototype that 
 **Application Link:**
 [https://demos.isl.ics.forth.gr/HoopProphets/apps/eurolensChat](https://demos.isl.ics.forth.gr/HoopProphets/apps/eurolensChat)]
 
-[![EuroLens-LLM Tutorial Video](https://img.youtube.com/vi/iqE4d8Ux7Dw/0.jpg)](https://www.youtube.com/watch?v=iqE4d8Ux7Dw)
+[![EuroLens-LLM Tutorial Video](https://img.youtube.com/vi/Yrso92TYOTc/0.jpg)](https://www.youtube.com/watch?v=Yrso92TYOTc)
 
 
 
