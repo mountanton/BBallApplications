@@ -1,0 +1,1957 @@
+#S1: List all the matches played by Real Madrid.
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?game
+WHERE {
+  ?game a bball:Game ;
+        (bball:homeTeam|bball:roadTeam) ?team .
+  ?team rdfs:label "Real Madrid" .
+}
+
+#S2: Show me every game from the Playoffs.
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+
+SELECT ?game
+WHERE {
+  ?game a bball:Game ;
+        bball:hasPhase "Playoffs" .
+}
+
+#S3: Provide the full stats for Panathinaikos in each of their home games during the 2023-24 season.
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?game ?statisticsProperty ?value
+WHERE {
+  ?game a bball:Game ;
+        bball:roadTeam ?team ;
+        bball:hasSeason ?season ;
+        bball:hasTeamBoxscore ?teamBoxscore .
+  ?team rdfs:label "Panathinaikos" .
+  ?season rdfs:label "2023-24" .
+  ?teamBoxscore bball:overTeam ?team ;
+                bball:hasTeamStatline ?statline .
+  ?statline ?statisticsProperty ?value .
+}
+
+#S4: Who were the referees assigned to each match?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?game ?refereeName
+WHERE {
+  ?game a bball:Game ;
+        bball:hasReferee ?referee .
+  ?referee rdfs:label ?refereeName .
+}
+
+#S5: List all Panathinaikos players for the 2023-24 season.
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?playerName
+WHERE {
+  ?team a bball:Team ;
+        rdfs:label "Panathinaikos" .
+  ?teamBoxscore bball:overTeam ?team ;
+                bball:hasPlayerParticipation ?playerParticipation .
+  ?playerParticipation bball:overPlayer ?player .
+  ?player rdfs:label ?playerName .
+  ?teamBoxscore bball:hasTeamStatline ?statline .
+  ?game bball:hasTeamBoxscore ?teamBoxscore .
+  ?game bball:hasSeason ?season .
+  ?season rdfs:label "2023-24" .
+}
+
+#S6: What is Ergin Ataman’s win percentage?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT (COUNT(?winningGame) / xsd:double(COUNT(?game)) AS ?winPercentage)
+WHERE {
+  ?coach a bball:Coach ;
+         rdfs:label "Ergin Ataman" .
+  ?teamBoxscore bball:hasHeadCoach ?coach ;
+                bball:overTeam ?team .
+  ?game (bball:homeTeam|bball:roadTeam) ?team ;
+        bball:hasTeamBoxscore ?teamBoxscore .
+  OPTIONAL {
+    ?game bball:winningTeam ?team .
+    BIND(?game AS ?winningGame)
+  }
+}
+
+#S7: How many spectators attended each game?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+SELECT ?game ?audience
+WHERE {
+  ?game a bball:Game ;
+        bball:hasAudience ?audience .
+}
+
+#S8: I need Mike James’ assists and turnovers per match.
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?game ?assists ?turnovers WHERE {
+  ?game a bball:Game ;
+        bball:hasTeamBoxscore ?teamBoxscore .
+  ?teamBoxscore bball:hasPlayerParticipation ?playerParticipation .
+  ?playerParticipation bball:overPlayer ?player ;
+                      bball:hasPlayerStatline ?statline .
+  ?player rdfs:label "Mike James" .
+  ?statline bball:assists ?assists ;
+            bball:turnovers ?turnovers .
+}
+
+#S9: Show me the stats for Centers in round 25 of the 2023-24 season.
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?playerName ?statline ?statValue
+WHERE {
+  ?game a bball:Game ;
+        bball:hasRound "25"^^xsd:integer ;
+        bball:hasSeason ?season ;
+        bball:hasTeamBoxscore ?teamBoxscore .
+        
+  ?season rdfs:label "2023-24" .
+
+  ?teamBoxscore bball:hasPlayerParticipation ?playerParticipation .
+
+  ?playerParticipation bball:overPlayer ?player ;
+                       bball:hasPlayerStatline ?statlineObj .
+
+  ?player rdfs:label ?playerName ;
+          bball:hasPosition "Center" .
+
+  ?statlineObj ?statline ?statValue .
+}
+
+#S10: Which games went into overtime?
+
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+
+SELECT ?game
+WHERE {
+  ?game a bball:Game ;
+        bball:hasExtraTime true .
+}
+
+#S11: How many fans attended each match in the 2023–24 season?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+SELECT ?game ?attendance
+WHERE {
+  ?game a bball:Game ;
+        bball:hasAudience ?attendance ;
+        bball:hasSeason ?season .
+  ?season a bball:Season ;
+          rdfs:label "2023-24" .
+}
+
+#S12: Who were the home teams in round 34 of the 2023-24 Regular Season?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?homeTeamName WHERE {
+  ?game a bball:Game ;
+        bball:homeTeam ?homeTeam ;
+        bball:hasRound "34"^^xsd:integer ;
+        bball:hasPhase "Regular Season" ;
+        bball:hasSeason ?season .
+  ?season bball:startYear "2023"^^xsd:gYear ;
+          bball:endYear "2024"^^xsd:gYear .
+  ?homeTeam rdfs:label ?homeTeamName .
+}
+
+#S13: Which team captured the EuroLeague title in 2021–22?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?teamName WHERE {
+  ?game a bball:Game ;
+        bball:hasLeague ?league ;
+        bball:hasSeason ?season ;
+		bball:hasPhaseGroup "CHAMPIONSHIP GAME";
+        bball:winningTeam ?winningTeam .
+  ?season bball:startYear "2021"^^xsd:gYear  ;
+          bball:endYear "2022"^^xsd:gYear  .
+  ?winningTeam rdfs:label ?teamName .
+}
+
+
+#S14: On what dates did Panathinaikos face Real Madrid in 2023-24?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?date WHERE {
+  ?game a bball:Game ;
+        bball:hasDate ?date ;
+        bball:hasSeason ?season ;
+        bball:homeTeam ?homeTeam ;
+        bball:roadTeam ?roadTeam .
+  ?season rdfs:label "2023-24" .
+  ?homeTeam rdfs:label ?homeTeamLabel .
+  ?roadTeam rdfs:label ?roadTeamLabel .
+  FILTER ((?homeTeamLabel = "Panathinaikos" && ?roadTeamLabel = "Real Madrid") || 
+          (?homeTeamLabel = "Real Madrid" && ?roadTeamLabel = "Panathinaikos"))
+}
+
+#S15: Where was the Olympiacos vs Fenerbahce match held in 2022-23?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?venueName WHERE {
+  ?game a bball:Game ;
+        bball:homeTeam ?homeTeam ;
+        bball:roadTeam ?roadTeam ;
+        bball:gameVenue ?venue ;
+        bball:hasSeason ?season .
+  ?homeTeam rdfs:label "Olympiacos" .
+  ?roadTeam rdfs:label "Fenerbahce" .
+  ?season rdfs:label "2022-23" .
+  ?venue rdfs:label ?venueName .
+}
+
+#S16: How many points does Cedi Osman score on average per 10 minutes in 2024-25?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT (SUM(?points)*10 /SUM(?minutesPlayed) AS ?averagePointsPer10Minutes)
+WHERE {
+  ?game bball:hasSeason ?season .
+  ?season rdfs:label "2024-25" .
+  ?game bball:hasTeamBoxscore ?teamBoxscore .
+  ?teamBoxscore bball:hasPlayerParticipation ?playerParticipation .
+  ?playerParticipation bball:overPlayer ?player .
+  ?player rdfs:label "Cedi Osman" .
+  ?playerParticipation bball:hasPlayerStatline ?statline .
+  ?statline bball:points ?points .
+  ?statline bball:minutesPlayed ?timePlayed .
+}
+
+#S17: Which country is referee Luigi Lamonica from?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?countryLabel WHERE {
+  ?referee a bball:Referee ;
+           rdfs:label "Luigi Lamonica" ;
+           bball:hasCountry ?country .
+  ?country rdfs:label ?countryLabel .
+}
+
+#S18: Show me all the games officiated by Anne Panther since 2018.
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?game WHERE {
+  ?game a bball:Game ;
+        bball:hasReferee ?referee ;
+        bball:hasDate ?date .
+  ?referee rdfs:label "Anne Panther" .
+  FILTER(YEAR(?date) >= 2018)
+}
+
+#S19: Who coached Maccabi Tel Aviv during the 2023–24 Playoffs run?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?coachName WHERE {
+  ?game bball:hasPhase "Playoffs" ;
+        bball:hasSeason ?season ;
+        bball:hasTeamBoxscore ?teamBoxscore .
+  ?season rdfs:label "2023-24" .
+  ?teamBoxscore bball:overTeam ?team ;
+                bball:hasHeadCoach ?coach .
+  ?team rdfs:label "Maccabi Tel Aviv" .
+  ?coach rdfs:label ?coachName .
+}
+
+
+#S20: What are Carsen Edwards’ height and weight measurements?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?height ?weight WHERE {
+  ?player rdfs:label "Carsen Edwards" .
+  ?player bball:hasHeight ?height .
+  ?player bball:hasWeight ?weight .
+}
+
+#F1: List the 2023–24 season games where the losing team had a higher PIR than the winner.
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+
+SELECT ?game ?losingTeamLabel ?winningTeamLabel ?losingTeamPIR ?winningTeamPIR
+WHERE {
+  ?game a bball:Game ;
+        bball:hasSeason ?season ;
+        bball:losingTeam ?losingTeam ;
+        bball:winningTeam ?winningTeam ;
+        bball:hasTeamBoxscore ?losingBoxscore, ?winningBoxscore .
+
+  ?season bball:startYear "2023"^^xsd:gYear ;
+          bball:endYear "2024"^^xsd:gYear .
+
+  ?losingBoxscore bball:overTeam ?losingTeam ;
+                  bball:hasTeamStatline ?losingStatline .
+  ?winningBoxscore bball:overTeam ?winningTeam ;
+                   bball:hasTeamStatline ?winningStatline .
+
+  ?losingStatline bball:PIR ?losingTeamPIR .
+  ?winningStatline bball:PIR ?winningTeamPIR .
+
+  ?losingTeam rdfs:label ?losingTeamLabel .
+  ?winningTeam rdfs:label ?winningTeamLabel .
+
+  FILTER(?losingTeamPIR > ?winningTeamPIR)
+}
+
+#F2: Show me Bayern Munich games where they shot at least 40% on both 2-pointers and 3-pointers but still lost.
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?game
+WHERE {
+  ?game a bball:Game ;
+        bball:losingTeam ?team ;
+        bball:hasTeamBoxscore ?boxscore .
+  ?team rdfs:label "Bayern Munich" .
+  ?boxscore bball:overTeam ?team ;
+            bball:hasTeamStatline ?statline .
+  ?statline bball:fieldGoalsPer2 ?fgPer2 ;
+            bball:fieldGoalsPer3 ?fgPer3 .
+  FILTER(?fgPer2 >= 40.0 && ?fgPer3 >= 40.0)
+}
+
+#F3: Give me Panathinaikos’ wins in which at least two of their guards scored over 15 points each.
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?game
+WHERE {
+  ?game a bball:Game ;
+        bball:winningTeam ?team ;
+        bball:hasTeamBoxscore ?teamBoxscore .
+  ?team rdfs:label "Panathinaikos" .
+  
+  ?teamBoxscore bball:overTeam ?team;
+  bball:hasPlayerParticipation ?participation1, ?participation2 .
+  
+  ?participation1 bball:overPlayer ?player1 ;
+                  bball:hasPlayerStatline ?statline1 .
+  ?participation2 bball:overPlayer ?player2 ;
+                  bball:hasPlayerStatline ?statline2 .
+  
+  ?player1 bball:hasPosition "Guard" .
+  ?player2 bball:hasPosition "Guard" .
+  
+  ?statline1 bball:points ?points1 .
+  ?statline2 bball:points ?points2 .
+  
+  FILTER(?points1 > 15 && ?points2 > 15 && ?player1!=?player2)
+}
+
+#F4: What percentage of games each season did Olympiacos attempt more free throws than their opponents?
+
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?seasonLabel (SUM(?olympiacosWins) / xsd:double(COUNT(?game)) * 100 AS ?percentage)
+WHERE {
+  ?game a bball:Game ;
+        bball:hasSeason ?season ;
+        bball:hasTeamBoxscore ?olympiacosBoxscore, ?opponentBoxscore .
+  
+  ?season rdfs:label ?seasonLabel .
+  
+  ?olympiacosBoxscore bball:overTeam ?olympiacosTeam ;
+                      bball:hasTeamStatline ?olympiacosStatline .
+  ?opponentBoxscore bball:overTeam ?opponentTeam ;
+                    bball:hasTeamStatline ?opponentStatline .
+  
+  ?olympiacosTeam rdfs:label "Olympiacos" .
+  FILTER (?opponentTeam != ?olympiacosTeam)
+  
+  ?olympiacosStatline bball:freeThrowsAttempted ?olympiacosFTA .
+  ?opponentStatline bball:freeThrowsAttempted ?opponentFTA .
+  
+  BIND(IF(?olympiacosFTA > ?opponentFTA, 1, 0) AS ?olympiacosWins)
+}
+GROUP BY ?seasonLabel
+
+#F5: Which games had at least one non-center from both teams grabbing over 10 rebounds?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+SELECT DISTINCT ?game
+WHERE {
+  ?game a bball:Game ;
+        bball:hasTeamBoxscore ?teamBoxscore1, ?teamBoxscore2 .
+  ?teamBoxscore1 bball:hasPlayerParticipation ?playerParticipation1 .
+  ?teamBoxscore2 bball:hasPlayerParticipation ?playerParticipation2 .
+  ?playerParticipation1 bball:overPlayer ?player1 .
+  ?playerParticipation2 bball:overPlayer ?player2 .
+  ?player1 bball:hasPosition ?position1 .
+  ?player2 bball:hasPosition ?position2 .
+  FILTER(?position1 != "Center" && ?position2 != "Center")
+  ?playerParticipation1 bball:hasPlayerStatline ?statline1 .
+  ?playerParticipation2 bball:hasPlayerStatline ?statline2 .
+  ?statline1 bball:totalRebounds ?rebounds1 .
+  ?statline2 bball:totalRebounds ?rebounds2 .
+  FILTER(?rebounds1 > 10 && ?rebounds2 > 10 && ?teamBoxscore1!=?teamBoxscore2)
+}
+
+#F6: What is Panathinaikos’ win percentage in games officiated by Referee Uros Nikolic since 2015?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT (SUM(?win) / xsd:double(COUNT(?game)) AS ?winPercentage) WHERE {
+  ?game a bball:Game;
+        bball:hasReferee ?referee;
+        bball:hasDate ?date;
+        bball:homeTeam|bball:roadTeam ?team.
+  ?referee rdfs:label "Uros Nikolic".
+  ?team rdfs:label "Panathinaikos".
+  FILTER(YEAR(?date) >= 2015)  
+  {
+    ?game bball:winningTeam ?team.
+    BIND(1 AS ?win)
+  }
+  UNION
+  {
+    ?game bball:losingTeam ?team.
+    BIND(0 AS ?win)
+  }
+}
+
+#F7: Show Chima Moneke’s points and assists in all games played in November 2024.
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?game ?points ?assists WHERE {
+  ?player rdfs:label "Chima Moneke" .
+  ?participation bball:overPlayer ?player .
+  ?participation bball:hasPlayerStatline ?statline .
+  ?statline bball:points ?points .
+  ?statline bball:assists ?assists .
+  ?teamBoxscore bball:hasPlayerParticipation ?participation .
+  ?game bball:hasTeamBoxscore ?teamBoxscore .
+  ?game bball:hasDate ?date.
+  FILTER (MONTH(?date) = 11 && YEAR(?date) = 2024)
+}
+
+
+#F8: Which games did both Dimitris Diamantidis and Nick Calathes, as teammates, record more than 5 assists each?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?game
+WHERE {
+  ?game a bball:Game ;
+        bball:hasTeamBoxscore ?teamBoxscore .
+  
+  ?teamBoxscore bball:hasPlayerParticipation ?participation1, ?participation2 ;
+                bball:overTeam ?team .
+  
+  ?participation1 bball:overPlayer ?player1 ;
+                  bball:hasPlayerStatline ?statline1 .
+  ?participation2 bball:overPlayer ?player2 ;
+                  bball:hasPlayerStatline ?statline2 .
+  
+  ?player1 rdfs:label "Dimitris Diamantidis" .
+  ?player2 rdfs:label "Nick Calathes" .
+  
+  ?statline1 bball:assists ?assists1 .
+  ?statline2 bball:assists ?assists2 .
+  
+  FILTER(?assists1 > 5 && ?assists2 > 5)
+}
+
+#F9: What is the road win percentage of Greek teams versus Spanish teams?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT (SUM(?roadWin) / xsd:double(COUNT(?game)) AS ?roadWinPercentage)
+WHERE {
+  ?game a bball:Game;
+        bball:roadTeam ?roadTeam;
+        bball:homeTeam ?homeTeam;
+        bball:winningTeam ?winningTeam.
+
+  ?roadTeam bball:teamCountry ?roadCountry.
+  ?homeTeam bball:teamCountry ?homeCountry.
+
+  ?roadCountry rdfs:label "Greece".
+  ?homeCountry rdfs:label "Spain".
+
+  BIND(IF(?winningTeam = ?roadTeam, 1, 0) AS ?roadWin)
+}
+
+#F10: List Panathinaikos players who made at least 3 three-pointers in a playoffs game.
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?playerName
+WHERE {
+  ?game a bball:Game ;
+        bball:hasPhase "Playoffs" ;
+        bball:hasTeamBoxscore ?teamBoxscore .
+        
+  ?teamBoxscore bball:overTeam ?team ;
+                bball:hasPlayerParticipation ?playerParticipation .
+                
+  ?team rdfs:label "Panathinaikos" .
+  
+  ?playerParticipation bball:overPlayer ?player ;
+                       bball:hasPlayerStatline ?statline .
+                       
+  ?player rdfs:label ?playerName .
+  
+  ?statline bball:fieldGoalsMade3 ?threePointers .
+  
+  FILTER(?threePointers >= 3)
+}
+
+#F11: Which players have the highest assist turnover ratio in 2023-24?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?playerName ((SUM(?assists)/SUM(?turnovers)) AS ?maxAssistTurnoverRatio)
+WHERE {
+  ?game bball:hasSeason ?season .
+  ?season rdfs:label "2023-24" .
+  ?game bball:hasTeamBoxscore ?teamBoxscore .
+  ?teamBoxscore bball:hasPlayerParticipation ?playerParticipation .
+  ?playerParticipation bball:hasPlayerStatline ?statline .
+  ?statline bball:assists ?assists .
+  ?statline bball:turnovers ?turnovers .
+  ?playerParticipation bball:overPlayer ?player .
+  ?player rdfs:label ?playerName . FILTER(?turnovers>0)
+}
+GROUP BY ?playerName
+ORDER BY DESC(?maxAssistTurnoverRatio)
+LIMIT 1
+
+#F12: Show me matches where a team won despite scoring fewer than 60 points.
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+
+SELECT ?game ?winningTeam ?winningTeamScore
+WHERE {
+  ?game a bball:Game ;
+        bball:winningTeam ?winningTeam ;
+		bball:homeTeam ?homeTeam ;
+		bball:roadTeam ?roadTeam ;
+        bball:hasHomeTeamScore ?homeScore ;
+        bball:hasRoadTeamScore ?roadScore .
+  FILTER ((?winningTeam = ?homeTeam && ?homeScore < 60) || 
+          (?winningTeam = ?roadTeam && ?roadScore < 60))
+}
+
+#F13: Find games where the losing team had more assists than the winner.
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+
+SELECT ?game
+WHERE {
+  ?game a bball:Game ;
+        bball:losingTeam ?losingTeam ;
+        bball:winningTeam ?winningTeam ;
+        bball:hasTeamBoxscore ?losingBoxscore, ?winningBoxscore .
+  ?losingBoxscore bball:overTeam ?losingTeam ;
+                  bball:hasTeamStatline ?losingStatline .
+  ?winningBoxscore bball:overTeam ?winningTeam ;
+                   bball:hasTeamStatline ?winningStatline .
+  ?losingStatline bball:assists ?losingAssists .
+  ?winningStatline bball:assists ?winningAssists .
+  FILTER(?losingAssists > ?winningAssists)
+}
+
+#F14: Which teams had the highest number of games in 2022-23 where they shot more three points than the opponent?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?teamName (COUNT(?game) AS ?gameCount)
+WHERE {
+  ?game bball:hasSeason ?season ;
+        bball:hasTeamBoxscore ?teamBoxscore1, ?teamBoxscore2 .
+  
+  ?season bball:startYear "2022"^^xsd:gYear ;
+          bball:endYear "2023"^^xsd:gYear .
+
+  ?teamBoxscore1 bball:hasTeamStatline ?statline1 ;
+                 bball:overTeam ?team1 .
+  ?teamBoxscore2 bball:hasTeamStatline ?statline2 ;
+                 bball:overTeam ?team2 .
+
+  ?team1 rdfs:label ?teamName .
+
+  FILTER(?team1 != ?team2)
+
+  ?statline1 bball:fieldGoalsMade3 ?team1FG3 .
+  ?statline2 bball:fieldGoalsMade3 ?team2FG3 .
+
+  FILTER(?team1FG3 > ?team2FG3)
+}
+GROUP BY ?teamName
+ORDER BY DESC(?gameCount)
+LIMIT 1
+#F15: List games where a player had over 7 assists and no turnovers.
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+
+SELECT ?game
+WHERE {
+  ?game a bball:Game ;
+        bball:hasTeamBoxscore ?teamBoxscore .
+  ?teamBoxscore bball:hasPlayerParticipation ?playerParticipation .
+  ?playerParticipation bball:hasPlayerStatline ?statline .
+  
+  ?statline bball:assists ?assists ;
+            bball:turnovers ?turnovers .
+  
+  FILTER(?assists > 7)
+  FILTER(?turnovers = 0)
+}
+
+#F16: Which matches had either the home or away team scoring under 50 points?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+
+SELECT ?game
+WHERE {
+  ?game a bball:Game .
+  {
+    ?game bball:hasHomeTeamScore ?homeScore .
+    FILTER(?homeScore < 50)
+  }
+  UNION
+  {
+    ?game bball:hasRoadTeamScore ?roadScore .
+    FILTER(?roadScore < 50)
+  }
+}
+
+#F17: Show me games where both teams hit at least 10 three-point shots.
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+
+SELECT ?game
+WHERE {
+  ?game a bball:Game ;
+        bball:hasTeamBoxscore ?teamBoxscore1, ?teamBoxscore2 .
+
+  ?teamBoxscore1 bball:hasTeamStatline ?statline1 .
+  ?teamBoxscore2 bball:hasTeamStatline ?statline2 .
+
+  ?statline1 bball:fieldGoalsMade3 ?threePoints1 .
+  ?statline2 bball:fieldGoalsMade3 ?threePoints2 .
+
+  FILTER(?threePoints1 >= 10 && ?threePoints2 >= 10 && ?teamBoxscore1!=?teamBoxscore2)
+}
+
+#F18: Which referees officiated more than five Panathinaikos games in 2023–24?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?refereeName (COUNT(?game) AS ?gameCount)
+WHERE {
+  ?game a bball:Game ;
+        bball:hasReferee ?referee ;
+        bball:hasSeason ?season ;
+        bball:hasDate ?date ;
+        (bball:homeTeam|bball:roadTeam) ?team .
+  ?season bball:startYear "2023"^^xsd:gYear ;
+          bball:endYear "2024"^^xsd:gYear .
+  ?team rdfs:label "Panathinaikos" .
+  ?referee rdfs:label ?refereeName .
+}
+GROUP BY ?refereeName 
+
+#F19: Who scored over 20 points and grabbed at least 5 rebounds in a single game?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+SELECT ?playerName ?points ?rebounds WHERE {
+  ?game a bball:Game ;
+        bball:hasTeamBoxscore ?teamBoxscore .
+  ?teamBoxscore bball:hasPlayerParticipation ?playerParticipation .
+  ?playerParticipation bball:overPlayer ?player ;
+                      bball:hasPlayerStatline ?statline .
+  ?player rdfs:label ?playerName .
+  ?statline bball:points ?points ;
+            bball:totalRebounds ?rebounds .
+  FILTER(?points > 20 && ?rebounds >= 5)
+}
+
+#F20: How many 2024–25 games did Panathinaikos come back to win after trailing in the third quarter?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+SELECT (COUNT(?game) AS ?numGames)
+WHERE {
+  ?game a bball:Game ;
+        bball:hasSeason ?season ;
+        bball:winningTeam ?winningTeam ;
+        bball:hasTeamBoxscore ?teamBoxscore .
+  ?season bball:startYear "2024"^^xsd:gYear ;
+          bball:endYear "2025"^^xsd:gYear .
+  ?winningTeam rdfs:label "Panathinaikos" .
+  ?teamBoxscore bball:overTeam ?winningTeam ;
+                bball:hasTeamStatline ?statline .
+  ?statline bball:endOfQuarter3points ?thirdQuarterPoints .
+  FILTER(EXISTS {
+    ?otherTeamBoxscore bball:overTeam ?otherTeam ;
+                       bball:hasTeamStatline ?otherStatline .
+    ?otherStatline bball:endOfQuarter3points ?otherThirdQuarterPoints .
+    FILTER(?otherThirdQuarterPoints > ?thirdQuarterPoints)
+    FILTER(?otherTeam != ?winningTeam)
+  })
+}
+
+#O1: Show the 10 biggest road wins (by point margin) for Panathinaikos.
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?game ?roadTeamScore ?homeTeamScore ?pointMargin
+WHERE {
+  ?game a bball:Game ;
+        bball:roadTeam ?roadTeam ;
+        bball:homeTeam ?homeTeam ;
+        bball:hasRoadTeamScore ?roadTeamScore ;
+        bball:hasHomeTeamScore ?homeTeamScore .
+  ?roadTeam rdfs:label "Panathinaikos" .
+  BIND((?roadTeamScore - ?homeTeamScore) AS ?pointMargin)
+}
+ORDER BY DESC(?pointMargin)
+LIMIT 10
+
+
+#O2: List the top 10 scorers under 1.85m tall in a single 2023–24 game.
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+SELECT ?playerName (MAX(?points) AS ?maxPoints)
+WHERE {
+  ?game bball:hasSeason ?season .
+  ?season rdfs:label "2023-24" .
+  ?game bball:hasTeamBoxscore ?teamBoxscore .
+  ?teamBoxscore bball:hasPlayerParticipation ?playerParticipation .
+  ?playerParticipation bball:overPlayer ?player .
+  ?player bball:hasHeight ?height .
+  FILTER(?height < 1.85)
+  ?player rdfs:label ?playerName .
+  ?playerParticipation bball:hasPlayerStatline ?statline .
+  ?statline bball:points ?points .
+}
+GROUP BY ?playerName
+ORDER BY DESC(?maxPoints)
+LIMIT 10
+
+#O3: Who are the top 10 rebounders in a game against Real Madrid since 2020?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?playerName (SUM(?totalRebounds) AS ?totalReboundsCount)
+WHERE {
+  ?game a bball:Game ;
+        bball:hasDate ?gameDate ;
+        bball:hasTeamBoxscore ?teamBoxscore, ?teamBoxscore2 .
+  FILTER(YEAR(?gameDate) >= 2020)
+  
+  ?teamBoxscore bball:overTeam ?team.
+  ?team rdfs:label "Real Madrid" .
+  
+  ?teamBoxscore2 bball:overTeam  ?team2;
+	bball:hasPlayerParticipation ?playerParticipation .
+  
+  FILTER(?team2!=?team)
+  
+  ?playerParticipation bball:overPlayer ?player ;
+                       bball:hasPlayerStatline ?playerStatline .
+  
+  ?player rdfs:label ?playerName .
+  
+  ?playerStatline bball:totalRebounds ?totalRebounds .
+}
+GROUP BY ?playerName
+ORDER BY DESC(?totalReboundsCount)
+LIMIT 10
+
+#O4: List the 10 best assist performances by Panathinaikos players in Final Four matches.
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?playerName ?assists WHERE {
+  ?game a bball:Game ;
+        bball:hasPhase "Final Four" ;
+        bball:hasTeamBoxscore ?teamBoxscore .
+
+  ?teamBoxscore bball:overTeam ?team ;
+                bball:hasPlayerParticipation ?playerParticipation .
+
+  ?team rdfs:label "Panathinaikos" .
+
+  ?playerParticipation bball:overPlayer ?player ;
+                       bball:hasPlayerStatline ?statline .
+
+  ?player rdfs:label ?playerName .
+
+  ?statline bball:assists ?assists .
+}
+ORDER BY DESC(?assists)
+LIMIT 10
+
+#O5: Which season had the highest ratio of road wins?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+SELECT ?seasonLabel (MAX(?roadWinRatio) AS ?maxRoadWinRatio)
+WHERE {
+  {
+    SELECT ?season (SUM(?roadWin) AS ?totalRoadWins) (COUNT(?game) AS ?totalGames) (SUM(?roadWin) / COUNT(?game) AS ?roadWinRatio)
+    WHERE {
+      ?game a bball:Game ;
+            bball:hasSeason ?season ;
+            bball:winningTeam ?winningTeam ;
+            bball:roadTeam ?roadTeam .
+      BIND(IF(?winningTeam = ?roadTeam, 1, 0) AS ?roadWin)
+    }
+    GROUP BY ?season
+  }
+  ?season rdfs:label ?seasonLabel .
+}
+ORDER BY DESC(?maxRoadWinRatio)
+LIMIT 1
+
+#O6: Show the 10 teams Olympiacos has beaten the most times.
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?teamName (COUNT(?game) AS ?wins)
+WHERE {
+  ?game a bball:Game;
+        bball:winningTeam ?winningTeam;
+        bball:losingTeam ?losingTeam.
+  ?winningTeam rdfs:label "Olympiacos".
+  ?losingTeam rdfs:label ?teamName.
+}
+GROUP BY ?teamName
+ORDER BY DESC(?wins)
+LIMIT 10
+
+#O7: Who played the most games with 30+ minutes in 2023–24?
+
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?playerName (COUNT(DISTINCT ?game) AS ?gameCount)
+WHERE {
+  ?game a bball:Game ;
+        bball:hasSeason ?season ;
+        bball:hasTeamBoxscore ?teamBoxscore .
+  ?season bball:startYear "2023"^^xsd:gYear ;
+          bball:endYear "2024"^^xsd:gYear .
+  ?teamBoxscore bball:hasPlayerParticipation ?playerParticipation .
+  ?playerParticipation bball:overPlayer ?player ;
+                       bball:hasPlayerStatline ?statline .
+  ?player rdfs:label ?playerName .
+  ?statline bball:minutesPlayed ?timePlayed .
+  FILTER(?timePlayed >= 30)
+}
+GROUP BY ?playerName
+ORDER BY DESC(?gameCount)
+LIMIT 1
+
+#O8: Give me the 10 lowest-scoring games.
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+
+SELECT ?game ?totalScore
+WHERE {
+  ?game a bball:Game ;
+        bball:hasHomeTeamScore ?homeScore ;
+        bball:hasRoadTeamScore ?roadScore .
+  BIND ((?homeScore + ?roadScore) AS ?totalScore)
+}
+ORDER BY ?totalScore
+LIMIT 10
+
+#O9: Which games had the highest total number of 3-point shots made by both teams?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+
+SELECT ?game (SUM(?team1FGM3 + ?team2FGM3) AS ?total3PointShots)
+WHERE {
+  ?game a bball:Game ;
+        bball:hasTeamBoxscore ?teamBoxscore1, ?teamBoxscore2 .
+
+  ?teamBoxscore1 bball:hasTeamStatline ?statline1 .
+  ?statline1 bball:fieldGoalsMade3 ?team1FGM3 .
+
+  ?teamBoxscore2 bball:hasTeamStatline ?statline2 .
+  ?statline2 bball:fieldGoalsMade3 ?team2FGM3 .
+  FILTER(?teamBoxscore1!=?teamBoxscore2)
+}
+GROUP BY ?game
+ORDER BY DESC(?total3PointShots)
+LIMIT 1
+
+#O10: Show the 10 Panathinaikos home games with the largest attendance.
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+SELECT ?game ?attendance
+WHERE {
+  ?game a bball:Game ;
+        bball:homeTeam ?team ;
+        bball:hasAudience ?attendance .
+  ?team rdfs:label "Panathinaikos" .
+}
+ORDER BY DESC(?attendance)
+LIMIT 10
+
+#O11: Who were the top 10 total point scorers in 2023–24?
+
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?playerName (SUM(?points) AS ?totalPoints)
+WHERE {
+  ?game bball:hasSeason ?season .
+  ?season rdfs:label "2023-24" .
+  ?game bball:hasTeamBoxscore ?teamBoxscore .
+  ?teamBoxscore bball:hasPlayerParticipation ?playerParticipation .
+  ?playerParticipation bball:overPlayer ?player .
+  ?player rdfs:label ?playerName .
+  ?playerParticipation bball:hasPlayerStatline ?statline .
+  ?statline bball:points ?points .
+}
+GROUP BY ?playerName
+ORDER BY DESC(?totalPoints)
+LIMIT 10
+
+#O12: Who grabbed the most rebounds in a single game during 2023–24?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?playerName (MAX(?totalRebounds) AS ?rebounds)
+WHERE {
+  ?game a bball:Game ;
+        bball:hasSeason ?season ;
+        bball:hasDate ?date ;
+        bball:hasTeamBoxscore ?teamBoxscore .
+  ?season bball:startYear "2023"^^xsd:gYear ;
+          bball:endYear "2024"^^xsd:gYear .
+  ?teamBoxscore bball:hasPlayerParticipation ?playerParticipation .
+  ?playerParticipation bball:overPlayer ?player ;
+                       bball:hasPlayerStatline ?statline .
+  ?player rdfs:label ?playerName .
+  ?statline bball:totalRebounds ?totalRebounds .
+}
+GROUP BY ?playerName
+ORDER BY DESC(?rebounds)
+LIMIT 1
+
+#O13: Which teams had the lowest average home crowd in 2024–25?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?teamName (AVG(?audience) AS ?averageHomeCrowd)
+WHERE {
+  ?game a bball:Game ;
+        bball:homeTeam ?team ;
+        bball:hasAudience ?audience ;
+        bball:hasSeason ?season .
+  ?season bball:startYear "2024"^^xsd:gYear ;
+          bball:endYear "2025"^^xsd:gYear .
+  ?team rdfs:label ?teamName .
+}
+GROUP BY ?teamName
+ORDER BY ?averageHomeCrowd
+LIMIT 1
+
+#O14: What are the 10 games with the largest winning margins?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+
+SELECT ?game ?winningTeam ?losingTeam ?winningMargin
+WHERE {
+  ?game a bball:Game ;
+        bball:winningTeam ?winningTeam ;
+        bball:losingTeam ?losingTeam ;
+        bball:hasHomeTeamScore ?homeScore ;
+        bball:hasRoadTeamScore ?roadScore .
+  BIND(ABS(?homeScore - ?roadScore) AS ?winningMargin)
+}
+ORDER BY DESC(?winningMargin)
+LIMIT 10
+
+#O15: Which players logged the most total minutes in 2023–24?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?playerName (SUM(?minutes) AS ?totalMinutes)
+WHERE {
+  ?game a bball:Game ;
+        bball:hasSeason ?season ;
+        bball:hasTeamBoxscore ?teamBoxscore .
+  ?season bball:startYear "2023"^^xsd:gYear ;
+          bball:endYear "2024"^^xsd:gYear .
+  ?teamBoxscore bball:hasPlayerParticipation ?playerParticipation .
+  ?playerParticipation bball:hasPlayerStatline ?statline ;
+                      bball:overPlayer ?player .
+  ?player rdfs:label ?playerName .
+  ?statline bball:minutesPlayed ?minutes .
+}
+GROUP BY ?playerName
+ORDER BY DESC(?totalMinutes)
+LIMIT 1
+
+#O16: List the top 10 games with the highest combined team assists.
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+
+SELECT DISTINCT ?game ?combinedAssists WHERE {
+  ?game a bball:Game ;
+        bball:hasTeamBoxscore ?teamBoxscore1, ?teamBoxscore2 .
+
+  ?teamBoxscore1 bball:hasTeamStatline ?statline1 .
+  ?teamBoxscore2 bball:hasTeamStatline ?statline2 .
+
+  ?statline1 bball:assists ?assists1 .
+  ?statline2 bball:assists ?assists2 .
+
+  BIND((?assists1 + ?assists2) AS ?combinedAssists)
+  FILTER(?teamBoxscore1!=?teamBoxscore2)
+}
+ORDER BY DESC(?combinedAssists)
+LIMIT 10
+
+#O17: Who are the top 10 players in shot blocking average this season?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?playerName (AVG(?blocks) AS ?averageBlocks)
+WHERE {
+  ?game a bball:Game ;
+        bball:hasSeason ?season ;
+        bball:hasTeamBoxscore ?teamBoxscore .
+  ?season rdfs:label "2024-25" .
+  ?teamBoxscore bball:hasPlayerParticipation ?playerParticipation .
+  ?playerParticipation bball:overPlayer ?player ;
+                      bball:hasPlayerStatline ?statline .
+  ?player rdfs:label ?playerName .
+  ?statline bball:blocks ?blocks .
+}
+GROUP BY ?playerName
+ORDER BY DESC(?averageBlocks)
+LIMIT 10
+
+#O18: Which referees officiated the most games overall?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?refereeName (COUNT(?game) AS ?gameCount)
+WHERE {
+  ?game a bball:Game ;
+        bball:hasReferee ?referee .
+  ?referee rdfs:label ?refereeName .
+}
+GROUP BY ?refereeName
+ORDER BY DESC(?gameCount)
+LIMIT 1
+
+#O19: Which guards have the highest average rebounds per game (min. 10 games)?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?playerName (AVG(?totalRebounds) AS ?avgRebounds)
+WHERE {
+  ?game a bball:Game ;
+        bball:hasTeamBoxscore ?teamBoxscore .
+
+  ?teamBoxscore bball:hasPlayerParticipation ?playerParticipation .
+
+  ?playerParticipation bball:overPlayer ?player ;
+                       bball:hasPlayerStatline ?statline .
+
+  ?player rdfs:label ?playerName ;
+          bball:hasPosition "Guard" .
+
+  ?statline bball:totalRebounds ?totalRebounds .
+}
+GROUP BY ?playerName
+HAVING (COUNT(?game) >= 10)
+ORDER BY DESC(?avgRebounds)
+LIMIT 1
+
+#O20: What are the top 10 players with the most 25+ points from 2023?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?playerName (COUNT(?game) AS ?gamesWith25PlusPoints)
+WHERE {
+  ?game a bball:Game ;
+        bball:hasDate ?date ;
+        bball:hasTeamBoxscore ?teamBoxscore .
+  FILTER (YEAR(?date) = 2023)
+
+  ?teamBoxscore bball:hasPlayerParticipation ?playerParticipation .
+  ?playerParticipation bball:overPlayer ?player ;
+                      bball:hasPlayerStatline ?statline .
+  ?statline bball:points ?points .
+  FILTER (?points >= 25)
+
+  ?player rdfs:label ?playerName .
+}
+GROUP BY ?playerName
+ORDER BY DESC(?gamesWith25PlusPoints)
+LIMIT 10
+
+#G1: For every referee who officiated Olympiacos, show their win/loss record.
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?refereeName (SUM(?isWin) AS ?wins) (SUM(?isLoss) AS ?losses)
+WHERE {
+  ?game bball:hasReferee ?referee ;
+        bball:homeTeam|bball:roadTeam ?team .
+  ?team rdfs:label "Olympiacos" .
+  ?referee rdfs:label ?refereeName .
+  
+  {
+    ?game bball:winningTeam ?team .
+    BIND(1 AS ?isWin)
+    BIND(0 AS ?isLoss)
+  }
+  UNION
+  {
+    ?game bball:losingTeam ?team .
+    BIND(0 AS ?isWin)
+    BIND(1 AS ?isLoss)
+  }
+}
+GROUP BY ?refereeName
+
+#G2: How many players per country played in 2023–24?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?countryLabel (COUNT(DISTINCT ?player) AS ?numberOfPlayers)
+WHERE {
+  ?game a bball:Game ;
+        bball:hasSeason ?season .
+  ?season bball:startYear "2023"^^xsd:gYear ;
+          bball:endYear "2024"^^xsd:gYear .
+  ?game bball:hasTeamBoxscore ?teamBoxscore .
+  ?teamBoxscore bball:hasPlayerParticipation ?playerParticipation .
+  ?playerParticipation bball:overPlayer ?player .
+  ?player bball:hasCountry ?country .
+  ?country rdfs:label ?countryLabel .
+}
+GROUP BY ?countryLabel
+
+#G3: Who scored the most points in a single game per position?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+SELECT ?position ?playerName (MAX(?points) AS ?maxPoints)
+WHERE {
+  ?game a bball:Game ;
+        bball:hasTeamBoxscore ?teamBoxscore .
+  ?teamBoxscore bball:hasPlayerParticipation ?playerParticipation .
+  ?playerParticipation bball:overPlayer ?player ;
+                      bball:hasPlayerStatline ?statline .
+  ?player bball:hasPosition ?position ;
+          rdfs:label ?playerName .
+  ?statline bball:points ?points .
+}
+GROUP BY ?position ?playerName
+ORDER BY DESC(?maxPoints)
+
+#G4: For each Panathinaikos player, how many times was he the team's top scorer?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?playerName (COUNT(?game) AS ?timesTopScorer)
+WHERE {
+  ?game bball:hasTeamBoxscore ?teamBoxscore .
+  ?teamBoxscore bball:overTeam ?team .
+  ?team rdfs:label "Panathinaikos" .
+  ?teamBoxscore bball:hasPlayerParticipation ?playerParticipation .
+  ?playerParticipation bball:overPlayer ?player .
+  ?player rdfs:label ?playerName .
+  ?playerParticipation bball:hasPlayerStatline ?playerStatline .
+  ?playerStatline bball:points ?playerPoints .
+  
+  {
+    SELECT ?game (MAX(?points) AS ?maxPoints)
+    WHERE {
+      ?game bball:hasTeamBoxscore ?teamBoxscore .
+      ?teamBoxscore bball:overTeam ?team .
+      ?team rdfs:label "Panathinaikos" .
+      ?teamBoxscore bball:hasPlayerParticipation ?playerParticipation .
+      ?playerParticipation bball:hasPlayerStatline ?playerStatline .
+      ?playerStatline bball:points ?points .
+    }
+    GROUP BY ?game
+  }
+  
+  FILTER(?playerPoints = ?maxPoints)
+}
+GROUP BY ?playerName
+
+#G5: Show total wins per team in the 2022–23 season.
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+
+SELECT ?teamName (COUNT(?game) AS ?totalWins)
+WHERE {
+  ?game a bball:Game ;
+        bball:winningTeam ?team ;
+        bball:hasSeason ?season .
+  ?season bball:startYear "2022"^^xsd:gYear ;
+          bball:endYear "2023"^^xsd:gYear .
+  ?team rdfs:label ?teamName .
+}
+GROUP BY ?teamName
+ORDER BY DESC(?totalWins)
+
+#G6: What’s Nick Calathes' career win/loss count?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT (COUNT(DISTINCT ?winningGame) AS ?wins) 
+WHERE {
+  ?player a bball:Player ;
+          rdfs:label "Nick Calathes" .
+          
+  OPTIONAL {
+    ?winningGame a bball:Game ;
+                 bball:winningTeam ?team .
+    ?teamBoxscore a bball:TeamBoxscore ;
+                  bball:overTeam ?team ;
+                  bball:hasPlayerParticipation ?playerParticipation .
+    ?playerParticipation bball:overPlayer ?player .
+  }
+ 
+}
+
+#G7: How many games were officiated by refs from each country?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?countryLabel (COUNT(DISTINCT ?game) AS ?gameCount)
+WHERE {
+  ?game a bball:Game ;
+        bball:hasReferee ?referee .
+  ?referee bball:hasCountry ?country .
+  ?country rdfs:label ?countryLabel .
+}
+GROUP BY ?countryLabel
+
+#G8: List the number of Playoffs games played by each team.
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?teamLabel (COUNT(?game) AS ?playoffGamesCount)
+WHERE {
+  ?game a bball:Game ;
+        bball:homeTeam|bball:roadTeam ?team ;
+        bball:hasPhase "Playoffs" .
+  ?team rdfs:label ?teamLabel .
+}
+GROUP BY ?teamLabel
+
+#G9: Show Panathinaikos wins per head coach.
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?coachName (COUNT(?game) AS ?wins)
+WHERE {
+  ?game a bball:Game ;
+        bball:winningTeam ?team ;
+        bball:hasTeamBoxscore ?boxscore .
+  ?boxscore bball:overTeam ?team ;
+            bball:hasHeadCoach ?coach .
+  ?coach rdfs:label ?coachName .
+  ?team rdfs:label "Panathinaikos" .
+}
+GROUP BY ?coachName
+
+#G10: How many teams per country have participated since 2010?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT ?countryLabel (COUNT(DISTINCT ?team) AS ?teamCount)
+WHERE {
+  ?game bball:hasSeason ?season .
+  ?season bball:startYear ?startYear .
+  FILTER(?startYear >= 2010) .
+  
+  {
+    ?game bball:homeTeam ?team .
+  }
+  UNION
+  {
+    ?game bball:roadTeam ?team .
+  }
+  
+  ?team bball:teamCountry ?country .
+  ?country rdfs:label ?countryLabel .
+}
+GROUP BY ?countryLabel
+
+#G11: Total points scored by Alba Berlin in 2023–24?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+SELECT (SUM(?points) AS ?totalPoints)
+WHERE {
+  ?game bball:hasTeamBoxscore ?teamBoxscore.
+  ?teamBoxscore bball:overTeam ?team.
+  ?team rdfs:label "Alba Berlin".
+  ?teamBoxscore bball:hasTeamStatline ?statline.
+  ?statline bball:points ?points.
+  ?game bball:hasSeason ?season.
+  ?season bball:startYear "2023"^^xsd:gYear.
+  ?season bball:endYear "2024"^^xsd:gYear.
+}
+
+#G12: How many wins did each team have during 2023–24?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+
+SELECT ?teamLabel (COUNT(?game) AS ?wins)
+WHERE {
+  ?game a bball:Game ;
+        bball:winningTeam ?team ;
+        bball:hasSeason ?season .
+  ?team rdfs:label ?teamLabel .
+  ?season bball:startYear "2023"^^xsd:gYear ;
+          bball:endYear "2024"^^xsd:gYear .
+}
+GROUP BY ?teamLabel
+
+#G13: How many games per season did referee Vasiliki Tsarouha officiate?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?season (COUNT(?game) AS ?gamesCount)
+WHERE {
+  ?game a bball:Game;
+        bball:hasReferee ?referee;
+        bball:hasSeason ?season.
+  ?referee rdfs:label "Vasiliki Tsaroucha".
+}
+GROUP BY ?season
+
+#G14: Give the total number of assists per player in 2023–24.
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?playerName (SUM(?assists) AS ?totalAssists)
+WHERE {
+    ?game a bball:Game ;
+          bball:hasSeason ?season ;
+          bball:hasTeamBoxscore ?teamBoxscore .
+  ?season bball:startYear "2023"^^xsd:gYear ;
+          bball:endYear "2024"^^xsd:gYear .
+    ?teamBoxscore bball:hasPlayerParticipation ?playerParticipation .
+    ?playerParticipation bball:overPlayer ?player ;
+                         bball:hasPlayerStatline ?statline .
+    ?player rdfs:label ?playerName .
+    ?statline bball:assists ?assists .
+}
+GROUP BY ?playerName
+
+#G15: What is the total fan attendance per team across all their games?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+
+SELECT ?teamLabel (SUM(?audience) AS ?totalAttendance)
+WHERE {
+  ?game a bball:Game ;
+        bball:hasAudience ?audience ;
+        (bball:homeTeam|bball:roadTeam) ?team .
+  ?team rdfs:label ?teamLabel .
+}
+GROUP BY ?teamLabel
+
+#G16: Show Mustapha Fall’s monthly total rebounds in 2023–24.
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?month (SUM(?rebounds) AS ?totalRebounds)
+WHERE {
+  ?player a bball:Player ;
+          rdfs:label "Mustapha Fall" ;
+          bball:hasCode ?playerCode .
+
+  ?participation a bball:PlayerParticipation ;
+                 bball:overPlayer ?player ;
+                 bball:hasPlayerStatline ?statline .
+
+  ?statline bball:totalRebounds ?rebounds .
+
+  ?teamBoxscore a bball:TeamBoxscore ;
+                bball:hasPlayerParticipation ?participation ;
+                bball:overTeam ?team .
+
+  ?game a bball:Game ;
+        bball:hasTeamBoxscore ?teamBoxscore ;
+        bball:hasDate ?date ;
+        bball:hasSeason ?season .
+
+  ?season bball:startYear "2023"^^xsd:gYear ;
+          bball:endYear "2024"^^xsd:gYear .
+
+  BIND(MONTH(?date) AS ?month)
+}
+GROUP BY ?month
+ORDER BY ?month
+
+#G17: How many wins does each Olympiacos coach have since 2020?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?coachName (COUNT(?game) AS ?wins)
+WHERE {
+  ?game bball:winningTeam ?team .
+  ?team rdfs:label "Olympiacos" .
+  ?game bball:hasDate ?date .
+  FILTER(YEAR(?date) >= 2020)
+  ?game bball:hasTeamBoxscore ?teamBoxscore .
+  ?teamBoxscore bball:overTeam ?team .
+  ?teamBoxscore bball:hasHeadCoach ?coach .
+  ?coach rdfs:label ?coachName .
+}
+GROUP BY ?coachName
+
+#G18: How often did each team play overtime games?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+
+SELECT ?teamLabel (COUNT(?game) AS ?overtimeGames)
+WHERE {
+  ?game a bball:Game ;
+        bball:hasExtraTime true ;
+        (bball:homeTeam|bball:roadTeam) ?team .
+  ?team rdfs:label ?teamLabel .
+}
+GROUP BY ?teamLabel
+
+#G19: What is the average point contribution per position for Efes in 2022–23?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?position (AVG(?points) AS ?averagePoints)
+WHERE {
+  ?game a bball:Game ;
+        bball:hasSeason ?season ;
+        bball:hasTeamBoxscore ?teamBoxscore .
+  ?season rdfs:label "2022-23" .
+  ?teamBoxscore bball:overTeam ?team ;
+                bball:hasPlayerParticipation ?playerParticipation .
+  ?team rdfs:label "Efes" .
+  ?playerParticipation bball:overPlayer ?player ;
+                      bball:hasPlayerStatline ?statline .
+  ?player bball:hasPosition ?position .
+  ?statline bball:points ?points .
+}
+GROUP BY ?position
+
+#G20: List how many teams competed per season.
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#> 
+
+SELECT ?seasonLabel (COUNT(DISTINCT ?team) AS ?teamCount)
+WHERE {
+  ?game a bball:Game ;
+        bball:hasSeason ?season ;
+        bball:homeTeam ?team .
+  ?season rdfs:label ?seasonLabel .
+}
+GROUP BY ?seasonLabel
+
+#N1: Which teams have never reached the playoffs?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?teamName WHERE {
+  ?team a bball:Team .
+  ?team rdfs:label ?teamName .
+  FILTER NOT EXISTS {
+    ?game a bball:Game ;
+          bball:hasPhase "Playoffs" ;
+          bball:homeTeam ?team .
+  }
+}
+
+#N2: Which 2024–25 teams have no Greek players?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?teamName WHERE {
+  ?team a bball:Team ;
+        rdfs:label ?teamName .
+  ?season a bball:Season ;
+            bball:startYear "2024"^^xsd:gYear ;
+            bball:endYear "2025"^^xsd:gYear .
+    ?game bball:hasSeason ?season ;
+          bball:hasTeamBoxscore ?teamBoxscore .
+		  ?teamBoxscore bball:overTeam ?team ;
+                  bball:hasPlayerParticipation ?playerParticipation .
+    ?playerParticipation bball:overPlayer ?player .
+  FILTER NOT EXISTS {
+
+    ?player bball:hasCountry ?country .
+    ?country rdfs:label "Greece" .
+    
+  }
+}
+
+#N3: Which referees did not officiate any Panathinaikos games in 2023–24?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?refereeName
+WHERE {
+  ?referee a bball:Referee .
+  ?referee rdfs:label ?refereeName .
+
+  FILTER NOT EXISTS {
+    ?game a bball:Game ;
+          bball:hasReferee ?referee ;
+          bball:hasSeason ?season ;
+          bball:hasDate ?date ;
+          bball:homeTeam|bball:roadTeam ?team .
+
+    ?season rdfs:label "2023–24" .
+    ?team rdfs:label "Panathinaikos" .
+  }
+}
+
+#N4: How many teams have never beaten Barcelona on the road since 2020?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT (COUNT(DISTINCT ?team) AS ?numTeams)
+WHERE {
+  ?game a bball:Game ;
+        bball:roadTeam ?team ;
+        bball:homeTeam ?homeTeam ;
+        bball:hasDate ?date ;
+        bball:winningTeam ?homeTeam .
+  ?homeTeam rdfs:label "Barcelona" .
+  FILTER(YEAR(?date) >= 2020)
+  FILTER NOT EXISTS {
+    ?game2 a bball:Game ;
+           bball:roadTeam ?team ;
+           bball:homeTeam ?homeTeam2 ;
+           bball:hasDate ?date2 ;
+           bball:winningTeam ?team .
+    ?homeTeam2 rdfs:label "Barcelona" .
+    FILTER(YEAR(?date2) >= 2020)
+  }
+}
+
+#N5: Which teams participated in 2023–24 but not in 2024–25?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?teamName WHERE {
+    ?game2023 bball:hasSeason ?season2023 .
+    ?season2023 rdfs:label "2023-24" .
+    ?game2023 (bball:homeTeam|bball:roadTeam) ?team .
+    ?team rdfs:label ?teamName .
+
+    FILTER NOT EXISTS {
+        ?game2024 bball:hasSeason ?season2024 .
+        ?season2024 rdfs:label "2024-25" .
+        ?game2024 (bball:homeTeam|bball:roadTeam) ?team .
+    }
+}
+
+#N6: List Olympiacos players from 2023–24 who aren’t Greek.
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?playerName
+WHERE {
+  ?game bball:hasSeason ?season ;
+        bball:hasTeamBoxscore ?teamBoxscore .
+  ?season rdfs:label "2023-24" .
+  ?teamBoxscore bball:overTeam ?team ;
+                bball:hasPlayerParticipation ?playerParticipation .
+  ?team rdfs:label "Olympiacos" .
+  ?playerParticipation bball:overPlayer ?player .
+  ?player rdfs:label ?playerName ;
+          bball:hasCountry ?country .
+  ?country rdfs:label ?countryName .
+  FILTER (?countryName != "Greece")
+}
+
+#N7: Which players in 2023–24 never had a PIR above 10?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?playerName
+WHERE {
+  
+  ?player a bball:Player.
+  ?player rdfs:label ?playerName .
+  
+  FILTER NOT EXISTS {
+?game bball:hasSeason ?season ;
+        bball:hasTeamBoxscore ?teamBoxscore .
+    ?season a bball:Season ;
+          bball:startYear "2023"^^xsd:gYear ;
+          bball:endYear "2024"^^xsd:gYear .
+  ?teamBoxscore bball:hasPlayerParticipation ?playerParticipation .
+  
+  ?playerParticipation bball:hasPlayerStatline ?statline ;
+                       bball:overPlayer ?player .
+  
+    ?statline bball:PIR ?pirValue .
+    FILTER (?pirValue > 10)
+  }
+}
+
+#N8: Show the teams that Fenerbahce failed to defeat in both games of 2024–25.
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?teamName WHERE {
+  ?game1 a bball:Game ;
+         bball:homeTeam ?fenerbahce ;
+         bball:roadTeam ?team ;
+         bball:hasSeason ?season ;
+         bball:hasDate ?date1 ;
+         bball:losingTeam ?fenerbahce .
+  ?game2 a bball:Game ;
+         bball:homeTeam ?team ;
+         bball:roadTeam ?fenerbahce ;
+         bball:hasSeason ?season ;
+         bball:hasDate ?date2 ;
+         bball:losingTeam ?fenerbahce .
+  ?fenerbahce rdfs:label "Fenerbahce" .
+  ?season bball:startYear "2024"^^xsd:gYear ;
+          bball:endYear "2025"^^xsd:gYear .
+  ?team rdfs:label ?teamName .
+}
+
+#N9: Which players in 2023–24 never played more than 10 minutes?
+
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?playerName
+WHERE {
+  ?season a bball:Season ;
+          rdfs:label "2023-24" .
+  
+  ?game bball:hasSeason ?season ;
+        bball:hasTeamBoxscore ?teamBoxscore .
+  
+  ?teamBoxscore bball:hasPlayerParticipation ?playerParticipation .
+  
+  ?playerParticipation bball:overPlayer ?player ;
+                       bball:hasPlayerStatline ?statline .
+  
+  ?player rdfs:label ?playerName .
+  FILTER NOT EXISTS{
+  ?statline bball:minutesPlayed ?timePlayed .
+  FILTER(?timePlayed>"10.0"^^xsd:double)
+}
+}
+
+#N10: List teams that didn’t make the playoffs in 2023–24.
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT distinct ?teamName
+WHERE {
+  ?team a bball:Team ;
+        rdfs:label ?teamName .
+     ?season bball:startYear "2023"^^xsd:gYear ;
+            bball:endYear "2024"^^xsd:gYear .
+  ?game1 a bball:Game ;
+		(bball:homeTeam|bball:roadTeam) ?team .
+  FILTER NOT EXISTS {
+    ?game2 a bball:Game ;
+          bball:hasSeason ?season ;
+          bball:hasPhase "Playoffs" ;
+          bball:homeTeam ?team .
+	?season bball:startYear "2023"^^xsd:gYear ;
+            bball:endYear "2024"^^xsd:gYear .
+ }
+}
+
+#N11: Which players never made a three-pointer in any game that they have played?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+
+SELECT DISTINCT ?playerName
+WHERE {
+  ?player a bball:Player .
+  ?player rdfs:label ?playerName .
+  FILTER NOT EXISTS {
+    ?playerParticipation a bball:PlayerParticipation ;
+                         bball:overPlayer ?player ;
+                         bball:hasPlayerStatline ?statline .
+    ?statline bball:fieldGoalsMade3 ?threePointersMade .
+    FILTER(?threePointersMade > 0)
+  }
+}
+
+#N12: Which referees didn’t officiate any 2023–24 Playoffs game?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?refereeName
+WHERE {
+  ?referee a bball:Referee .
+  ?referee rdfs:label ?refereeName .
+  FILTER NOT EXISTS {
+    ?game a bball:Game ;
+          bball:hasReferee ?referee ;
+          bball:hasSeason ?season ;
+          bball:hasPhase "Playoffs" .
+    ?season bball:startYear "2023"^^xsd:gYear ;
+            bball:endYear "2024"^^xsd:gYear .
+  }
+}
+
+#N13: Which teams had zero road wins in March 2023?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT DISTINCT ?teamLabel WHERE {
+  ?game a bball:Game ;
+        bball:hasDate ?date.
+  FILTER (MONTH(?date) = 3 && YEAR(?date) = 2023)
+  ?game bball:roadTeam ?team ;
+        bball:winningTeam ?winningTeam .
+  FILTER (?winningTeam != ?team)
+  ?team rdfs:label ?teamLabel .
+}
+
+#N14: Which players were never in a starting lineup this season?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?playerName
+WHERE {
+  ?player a bball:Player .
+  ?player rdfs:label ?playerName .
+  ?game bball:hasSeason ?season .
+  ?season bball:startYear "2024"^^xsd:gYear .
+  ?season bball:endYear "2025"^^xsd:gYear .
+  ?game bball:hasTeamBoxscore ?teamBoxscore .
+  ?teamBoxscore bball:overTeam ?team .
+  ?teamBoxscore bball:hasPlayerParticipation ?playerParticipation .
+  ?playerParticipation bball:overPlayer ?player .
+  ?playerParticipation bball:hasPlayerStatline ?statline .
+  
+  FILTER NOT EXISTS {
+	?statline bball:startingFive true .
+  }
+     
+}
+
+#N15: Which countries had no players represented in 2023–24?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT DISTINCT ?country ?countryLabel WHERE {
+  ?country a bball:Country ;
+           rdfs:label ?countryLabel .
+  
+  FILTER NOT EXISTS {
+    ?player a bball:Player ;
+            bball:hasCountry ?country ;
+            bball:hasBirthCountry ?country .
+    
+    ?game a bball:Game ;
+          bball:hasSeason ?season ;
+          bball:hasTeamBoxscore ?boxscore .
+    
+    ?season rdfs:label "2023–24" .
+    
+    ?boxscore bball:hasPlayerParticipation ?participation .
+    ?participation bball:overPlayer ?player .
+  }
+}
+
+#N16: Name the players who didn’t play over 10 minutes in any game.
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?playerName
+WHERE {
+    
+  ?game bball:hasSeason ?season ;
+        bball:hasTeamBoxscore ?teamBoxscore .
+  
+  ?teamBoxscore bball:hasPlayerParticipation ?playerParticipation .
+  
+  ?playerParticipation bball:overPlayer ?player ;
+                       bball:hasPlayerStatline ?statline .
+  
+  ?player rdfs:label ?playerName .
+  FILTER NOT EXISTS{
+  ?statline bball:minutesPlayed ?timePlayed .
+  FILTER(?timePlayed>"10.0"^^xsd:double)
+  }
+}
+
+#N17: Which teams missed out on the playoffs in 2023-24 although they won Real Madrid?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?teamName WHERE {
+  ?game a bball:Game ;
+        bball:winningTeam ?team ;
+        bball:losingTeam ?realMadrid ;
+        bball:hasSeason ?season .
+  
+  ?team rdfs:label ?teamName .
+  ?realMadrid rdfs:label "Real Madrid" .
+  
+  ?season rdfs:label "2024-25" .
+  
+  FILTER NOT EXISTS {
+    ?playoffGame a bball:Game ;
+                 bball:hasPhase "Playoffs" ;
+                 bball:homeTeam ?team .
+  }
+}
+
+
+#N18: Which teams have always won at home against Panathinaikos?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?teamName WHERE {
+  ?game a bball:Game ;
+        bball:homeTeam ?homeTeam ;
+        bball:roadTeam ?roadTeam ;
+        bball:winningTeam ?homeTeam .
+  ?homeTeam rdfs:label ?teamName .
+  ?roadTeam rdfs:label "Panathinaikos" .
+  
+  FILTER NOT EXISTS {
+    ?otherGame a bball:Game ;
+               bball:homeTeam ?homeTeam ;
+               bball:roadTeam ?roadTeam ;
+               bball:winningTeam ?roadTeam .
+  }
+}
+
+
+#N19: Which teams have never lost a game by more than 30 points?
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+
+SELECT DISTINCT ?team WHERE {
+  ?game bball:losingTeam ?team .
+FILTER NOT EXISTS {
+  ?game bball:hasHomeTeamScore ?homeScore .
+  ?game bball:hasRoadTeamScore ?roadScore . 
+  FILTER(ABS(?homeScore - ?roadScore)  >= 30)
+}
+}
+
+#N20: Show teams that didn’t field any player taller than 2.15 in 2023–24.
+
+PREFIX bball: <http://www.ics.forth.gr/isl/Basketball#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?teamName
+WHERE {
+  ?game a bball:Game ;
+        bball:hasSeason ?season ;
+        bball:hasTeamBoxscore ?teamBoxscore .
+  ?season bball:startYear "2023"^^xsd:gYear ;
+          bball:endYear "2024"^^xsd:gYear .
+  ?teamBoxscore bball:overTeam ?team .
+  ?team rdfs:label ?teamName .
+  FILTER NOT EXISTS {
+    ?teamBoxscore bball:hasPlayerParticipation ?playerParticipation .
+    ?playerParticipation bball:overPlayer ?player .
+    ?player bball:hasHeight ?height .
+    FILTER(?height > 2.15)
+  }
+}

@@ -1,0 +1,846 @@
+
+Running S1: List all the matches played by Real Madrid.
+run 1 | time=0.295s | status=200 | results=670
+run 2 | time=0.265s | status=200 | results=670
+run 3 | time=0.265s | status=200 | results=670
+run 4 | time=0.285s | status=200 | results=670
+run 5 | time=0.271s | status=200 | results=670
+
+Running S2: Show me every game from the Playoffs.
+run 1 | time=0.263s | status=200 | results=342
+run 2 | time=0.259s | status=200 | results=342
+run 3 | time=0.259s | status=200 | results=342
+run 4 | time=0.259s | status=200 | results=342
+run 5 | time=0.259s | status=200 | results=342
+
+Running S3: Provide the full stats for Panathinaikos in each of their home games during the 2023-24 season.
+run 1 | time=0.299s | status=200 | results=702
+run 2 | time=0.304s | status=200 | results=702
+run 3 | time=0.285s | status=200 | results=702
+run 4 | time=0.286s | status=200 | results=702
+run 5 | time=0.285s | status=200 | results=702
+
+Running S4: Who were the referees assigned to each match?
+run 1 | time=0.807s | status=200 | results=10000
+run 2 | time=0.723s | status=200 | results=10000
+run 3 | time=0.724s | status=200 | results=10000
+run 4 | time=0.714s | status=200 | results=10000
+run 5 | time=0.712s | status=200 | results=10000
+
+Running S5: List all Panathinaikos players for the 2023-24 season.
+run 1 | time=0.260s | status=200 | results=16
+run 2 | time=0.260s | status=200 | results=16
+run 3 | time=0.261s | status=200 | results=16
+run 4 | time=0.259s | status=200 | results=16
+run 5 | time=0.261s | status=200 | results=16
+
+Running S6: What is Ergin Ataman’s win percentage?
+run 1 | time=0.261s | status=200 | results=1
+run 2 | time=0.257s | status=200 | results=1
+run 3 | time=0.259s | status=200 | results=1
+run 4 | time=0.260s | status=200 | results=1
+run 5 | time=0.261s | status=200 | results=1
+
+Running S7: How many spectators attended each game?
+run 1 | time=0.525s | status=200 | results=5754
+run 2 | time=0.537s | status=200 | results=5754
+run 3 | time=0.521s | status=200 | results=5754
+run 4 | time=0.509s | status=200 | results=5754
+run 5 | time=0.509s | status=200 | results=5754
+
+Running S8: I need Mike James’ assists and turnovers per match.
+run 1 | time=0.279s | status=200 | results=353
+run 2 | time=0.274s | status=200 | results=353
+run 3 | time=0.270s | status=200 | results=353
+run 4 | time=0.271s | status=200 | results=353
+run 5 | time=0.272s | status=200 | results=353
+
+Running S9: Show me the stats for Centers in round 25 of the 2023-24 season.
+run 1 | time=0.326s | status=200 | results=1428
+run 2 | time=0.321s | status=200 | results=1428
+run 3 | time=0.318s | status=200 | results=1428
+run 4 | time=0.308s | status=200 | results=1428
+run 5 | time=0.309s | status=200 | results=1428
+
+Running S10: Which games went into overtime?
+run 1 | time=0.258s | status=200 | results=302
+run 2 | time=0.260s | status=200 | results=302
+run 3 | time=0.256s | status=200 | results=302
+run 4 | time=0.261s | status=200 | results=302
+run 5 | time=0.259s | status=200 | results=302
+
+Running S11: How many fans attended each match in the 2023–24 season?
+run 1 | time=0.266s | status=200 | results=315
+run 2 | time=0.266s | status=200 | results=315
+run 3 | time=0.262s | status=200 | results=315
+run 4 | time=0.270s | status=200 | results=315
+run 5 | time=0.266s | status=200 | results=315
+
+Running S12: Who were the home teams in round 34 of the 2023-24 Regular Season?
+run 1 | time=0.265s | status=200 | results=9
+run 2 | time=0.261s | status=200 | results=9
+run 3 | time=0.264s | status=200 | results=9
+run 4 | time=0.260s | status=200 | results=9
+run 5 | time=0.260s | status=200 | results=9
+
+Running S13: Which team captured the EuroLeague title in 2021–22?
+run 1 | time=0.263s | status=200 | results=1
+run 2 | time=0.264s | status=200 | results=1
+run 3 | time=0.260s | status=200 | results=1
+run 4 | time=0.263s | status=200 | results=1
+run 5 | time=0.262s | status=200 | results=1
+
+Running S14: On what dates did Panathinaikos face Real Madrid in 2023-24?
+run 1 | time=0.256s | status=200 | results=3
+run 2 | time=0.258s | status=200 | results=3
+run 3 | time=0.258s | status=200 | results=3
+run 4 | time=0.260s | status=200 | results=3
+run 5 | time=0.257s | status=200 | results=3
+
+Running S15: Where was the Olympiacos vs Fenerbahce match held in 2022-23?
+run 1 | time=0.258s | status=200 | results=4
+run 2 | time=0.261s | status=200 | results=4
+run 3 | time=0.257s | status=200 | results=4
+run 4 | time=0.261s | status=200 | results=4
+run 5 | time=0.262s | status=200 | results=4
+
+Running S16: How many points does Cedi Osman score on average per 10 minutes in 2024-25?
+run 1 | time=0.261s | status=200 | results=1
+run 2 | time=0.255s | status=200 | results=1
+run 3 | time=0.258s | status=200 | results=1
+run 4 | time=0.258s | status=200 | results=1
+run 5 | time=0.258s | status=200 | results=1
+
+Running S17: Which country is referee Luigi Lamonica from?
+run 1 | time=0.255s | status=200 | results=1
+run 2 | time=0.254s | status=200 | results=1
+run 3 | time=0.255s | status=200 | results=1
+run 4 | time=0.253s | status=200 | results=1
+run 5 | time=0.253s | status=200 | results=1
+
+Running S18: Show me all the games officiated by Anne Panther since 2018.
+run 1 | time=0.256s | status=200 | results=128
+run 2 | time=0.257s | status=200 | results=128
+run 3 | time=0.258s | status=200 | results=128
+run 4 | time=0.255s | status=200 | results=128
+run 5 | time=0.257s | status=200 | results=128
+
+Running S19: Who coached Maccabi Tel Aviv during the 2023–24 Playoffs run?
+run 1 | time=0.261s | status=200 | results=1
+run 2 | time=0.258s | status=200 | results=1
+run 3 | time=0.259s | status=200 | results=1
+run 4 | time=0.255s | status=200 | results=1
+run 5 | time=0.256s | status=200 | results=1
+
+Running S20: What are Carsen Edwards’ height and weight measurements?
+run 1 | time=0.254s | status=200 | results=1
+run 2 | time=0.253s | status=200 | results=1
+run 3 | time=0.254s | status=200 | results=1
+run 4 | time=0.253s | status=200 | results=1
+run 5 | time=0.256s | status=200 | results=1
+
+===== BATCH SUMMARY =====
+Batch 1 (queries 1-20)
+avg=0.302s min=0.253s max=0.807s
+
+Running F1: List the 2023–24 season games where the losing team had a higher PIR than the winner.
+run 1 | time=0.309s | status=200 | results=29
+run 2 | time=0.304s | status=200 | results=29
+run 3 | time=0.302s | status=200 | results=29
+run 4 | time=0.303s | status=200 | results=29
+run 5 | time=0.299s | status=200 | results=29
+
+Running F2: Show me Bayern Munich games where they shot at least 40% on both 2-pointers and 3-pointers but still lost.
+run 1 | time=0.261s | status=200 | results=44
+run 2 | time=0.256s | status=200 | results=44
+run 3 | time=0.259s | status=200 | results=44
+run 4 | time=0.258s | status=200 | results=44
+run 5 | time=0.263s | status=200 | results=44
+
+Running F3: Give me Panathinaikos’ wins in which at least two of their guards scored over 15 points each.
+run 1 | time=0.299s | status=200 | results=39
+run 2 | time=0.291s | status=200 | results=39
+run 3 | time=0.283s | status=200 | results=39
+run 4 | time=0.280s | status=200 | results=39
+run 5 | time=0.279s | status=200 | results=39
+
+Running F4: What percentage of games each season did Olympiacos attempt more free throws than their opponents?
+run 1 | time=0.272s | status=200 | results=26
+run 2 | time=0.274s | status=200 | results=26
+run 3 | time=0.270s | status=200 | results=26
+run 4 | time=0.278s | status=200 | results=26
+run 5 | time=0.266s | status=200 | results=26
+
+Running F5: Which games had at least one non-center from both teams grabbing over 10 rebounds?
+run 1 | time=0.328s | status=200 | results=55
+run 2 | time=0.321s | status=200 | results=55
+run 3 | time=0.329s | status=200 | results=55
+run 4 | time=0.318s | status=200 | results=55
+run 5 | time=0.340s | status=200 | results=55
+
+Running F6: What is Panathinaikos’ win percentage in games officiated by Referee Uros Nikolic since 2015?
+run 1 | time=0.271s | status=200 | results=1
+run 2 | time=0.265s | status=200 | results=1
+run 3 | time=0.265s | status=200 | results=1
+run 4 | time=0.273s | status=200 | results=1
+run 5 | time=0.264s | status=200 | results=1
+
+Running F7: Show Chima Moneke’s points and assists in all games played in November 2024.
+run 1 | time=0.257s | status=200 | results=6
+run 2 | time=0.257s | status=200 | results=6
+run 3 | time=0.260s | status=200 | results=6
+run 4 | time=0.259s | status=200 | results=6
+run 5 | time=0.256s | status=200 | results=6
+
+Running F8: Which games did both Dimitris Diamantidis and Nick Calathes, as teammates, record more than 5 assists each?
+run 1 | time=0.278s | status=200 | results=5
+run 2 | time=0.269s | status=200 | results=5
+run 3 | time=0.266s | status=200 | results=5
+run 4 | time=0.269s | status=200 | results=5
+run 5 | time=0.262s | status=200 | results=5
+
+Running F9: What is the road win percentage of Greek teams versus Spanish teams?
+run 1 | time=0.262s | status=200 | results=1
+run 2 | time=0.258s | status=200 | results=1
+run 3 | time=0.260s | status=200 | results=1
+run 4 | time=0.263s | status=200 | results=1
+run 5 | time=0.260s | status=200 | results=1
+
+Running F10: List Panathinaikos players who made at least 3 three-pointers in a playoffs game.
+run 1 | time=0.266s | status=200 | results=29
+run 2 | time=0.262s | status=200 | results=29
+run 3 | time=0.258s | status=200 | results=29
+run 4 | time=0.259s | status=200 | results=29
+run 5 | time=0.261s | status=200 | results=29
+
+Running F11: Which players have the highest assist turnover ratio in 2023-24?
+run 1 | time=0.263s | status=200 | results=1
+run 2 | time=0.263s | status=200 | results=1
+run 3 | time=0.266s | status=200 | results=1
+run 4 | time=0.261s | status=200 | results=1
+run 5 | time=0.264s | status=200 | results=1
+
+Running F12: Show me matches where a team won despite scoring fewer than 60 points.
+run 1 | time=0.262s | status=200 | results=22
+run 2 | time=0.261s | status=200 | results=22
+run 3 | time=0.261s | status=200 | results=22
+run 4 | time=0.261s | status=200 | results=22
+run 5 | time=0.264s | status=200 | results=22
+
+Running F13: Find games where the losing team had more assists than the winner.
+run 1 | time=0.317s | status=200 | results=1660
+run 2 | time=0.309s | status=200 | results=1660
+run 3 | time=0.316s | status=200 | results=1660
+run 4 | time=0.312s | status=200 | results=1660
+run 5 | time=0.317s | status=200 | results=1660
+
+Running F14: Which teams had the highest number of games in 2022-23 where they shot more three points than the opponent?
+run 1 | time=0.285s | status=200 | results=1
+run 2 | time=0.286s | status=200 | results=1
+run 3 | time=0.289s | status=200 | results=1
+run 4 | time=0.284s | status=200 | results=1
+run 5 | time=0.288s | status=200 | results=1
+
+Running F15: List games where a player had over 7 assists and no turnovers.
+run 1 | time=0.264s | status=200 | results=224
+run 2 | time=0.267s | status=200 | results=224
+run 3 | time=0.265s | status=200 | results=224
+run 4 | time=0.266s | status=200 | results=224
+run 5 | time=0.262s | status=200 | results=224
+
+Running F16: Which matches had either the home or away team scoring under 50 points?
+run 1 | time=0.257s | status=200 | results=50
+run 2 | time=0.257s | status=200 | results=50
+run 3 | time=0.256s | status=200 | results=50
+run 4 | time=0.255s | status=200 | results=50
+run 5 | time=0.255s | status=200 | results=50
+
+Running F17: Show me games where both teams hit at least 10 three-point shots.
+run 1 | time=0.285s | status=200 | results=1404
+run 2 | time=0.288s | status=200 | results=1404
+run 3 | time=0.293s | status=200 | results=1404
+run 4 | time=0.280s | status=200 | results=1404
+run 5 | time=0.282s | status=200 | results=1404
+
+Running F18: Which referees officiated more than five Panathinaikos games in 2023–24?
+run 1 | time=0.273s | status=200 | results=41
+run 2 | time=0.262s | status=200 | results=41
+run 3 | time=0.265s | status=200 | results=41
+run 4 | time=0.263s | status=200 | results=41
+run 5 | time=0.262s | status=200 | results=41
+
+Running F19: Who scored over 20 points and grabbed at least 5 rebounds in a single game?
+run 1 | time=0.471s | status=200 | results=2121
+run 2 | time=0.495s | status=200 | results=2121
+run 3 | time=0.502s | status=200 | results=2121
+run 4 | time=0.473s | status=200 | results=2121
+run 5 | time=0.504s | status=200 | results=2121
+
+Running F20: How many 2024–25 games did Panathinaikos come back to win after trailing in the third quarter?
+run 1 | time=0.347s | status=200 | results=1
+run 2 | time=0.351s | status=200 | results=1
+run 3 | time=0.354s | status=200 | results=1
+run 4 | time=0.345s | status=200 | results=1
+run 5 | time=0.339s | status=200 | results=1
+
+===== BATCH SUMMARY =====
+Batch 2 (queries 21-40)
+avg=0.290s min=0.255s max=0.504s
+
+Running O1: Show the 10 biggest road wins (by point margin) for Panathinaikos.
+run 1 | time=0.259s | status=200 | results=10
+run 2 | time=0.259s | status=200 | results=10
+run 3 | time=0.263s | status=200 | results=10
+run 4 | time=0.258s | status=200 | results=10
+run 5 | time=0.260s | status=200 | results=10
+
+Running O2: List the top 10 scorers under 1.85m tall in a single 2023–24 game.
+run 1 | time=0.263s | status=200 | results=10
+run 2 | time=0.261s | status=200 | results=10
+run 3 | time=0.261s | status=200 | results=10
+run 4 | time=0.261s | status=200 | results=10
+run 5 | time=0.264s | status=200 | results=10
+
+Running O3: Who are the top 10 rebounders in a game against Real Madrid since 2020?
+run 1 | time=0.275s | status=200 | results=10
+run 2 | time=0.270s | status=200 | results=10
+run 3 | time=0.281s | status=200 | results=10
+run 4 | time=0.271s | status=200 | results=10
+run 5 | time=0.276s | status=200 | results=10
+
+Running O4: List the 10 best assist performances by Panathinaikos players in Final Four matches.
+run 1 | time=0.259s | status=200 | results=10
+run 2 | time=0.260s | status=200 | results=10
+run 3 | time=0.259s | status=200 | results=10
+run 4 | time=0.261s | status=200 | results=10
+run 5 | time=0.261s | status=200 | results=10
+
+Running O5: Which season had the highest ratio of road wins?
+run 1 | time=0.264s | status=200 | results=1
+run 2 | time=0.267s | status=200 | results=1
+run 3 | time=0.264s | status=200 | results=1
+run 4 | time=0.264s | status=200 | results=1
+run 5 | time=0.269s | status=200 | results=1
+
+Running O6: Show the 10 teams Olympiacos has beaten the most times.
+run 1 | time=0.259s | status=200 | results=10
+run 2 | time=0.256s | status=200 | results=10
+run 3 | time=0.256s | status=200 | results=10
+run 4 | time=0.258s | status=200 | results=10
+run 5 | time=0.257s | status=200 | results=10
+
+Running O7: Who played the most games with 30+ minutes in 2023–24?
+run 1 | time=0.273s | status=200 | results=1
+run 2 | time=0.264s | status=200 | results=1
+run 3 | time=0.264s | status=200 | results=1
+run 4 | time=0.266s | status=200 | results=1
+run 5 | time=0.264s | status=200 | results=1
+
+Running O8: Give me the 10 lowest-scoring games.
+run 1 | time=0.256s | status=200 | results=10
+run 2 | time=0.258s | status=200 | results=10
+run 3 | time=0.260s | status=200 | results=10
+run 4 | time=0.255s | status=200 | results=10
+run 5 | time=0.257s | status=200 | results=10
+
+Running O9: Which games had the highest total number of 3-point shots made by both teams?
+run 1 | time=0.277s | status=200 | results=1
+run 2 | time=0.286s | status=200 | results=1
+run 3 | time=0.276s | status=200 | results=1
+run 4 | time=0.276s | status=200 | results=1
+run 5 | time=0.279s | status=200 | results=1
+
+Running O10: Show the 10 Panathinaikos home games with the largest attendance.
+run 1 | time=0.255s | status=200 | results=10
+run 2 | time=0.255s | status=200 | results=10
+run 3 | time=0.255s | status=200 | results=10
+run 4 | time=0.256s | status=200 | results=10
+run 5 | time=0.256s | status=200 | results=10
+
+Running O11: Who were the top 10 total point scorers in 2023–24?
+run 1 | time=0.262s | status=200 | results=10
+run 2 | time=0.263s | status=200 | results=10
+run 3 | time=0.261s | status=200 | results=10
+run 4 | time=0.261s | status=200 | results=10
+run 5 | time=0.265s | status=200 | results=10
+
+Running O12: Who grabbed the most rebounds in a single game during 2023–24?
+run 1 | time=0.269s | status=200 | results=1
+run 2 | time=0.271s | status=200 | results=1
+run 3 | time=0.268s | status=200 | results=1
+run 4 | time=0.270s | status=200 | results=1
+run 5 | time=0.274s | status=200 | results=1
+
+Running O13: Which teams had the lowest average home crowd in 2024–25?
+run 1 | time=0.258s | status=200 | results=1
+run 2 | time=0.258s | status=200 | results=1
+run 3 | time=0.257s | status=200 | results=1
+run 4 | time=0.258s | status=200 | results=1
+run 5 | time=0.260s | status=200 | results=1
+
+Running O14: What are the 10 games with the largest winning margins?
+run 1 | time=0.264s | status=200 | results=10
+run 2 | time=0.261s | status=200 | results=10
+run 3 | time=0.266s | status=200 | results=10
+run 4 | time=0.264s | status=200 | results=10
+run 5 | time=0.264s | status=200 | results=10
+
+Running O15: Which players logged the most total minutes in 2023–24?
+run 1 | time=0.269s | status=200 | results=1
+run 2 | time=0.261s | status=200 | results=1
+run 3 | time=0.267s | status=200 | results=1
+run 4 | time=0.265s | status=200 | results=1
+run 5 | time=0.264s | status=200 | results=1
+
+Running O16: List the top 10 games with the highest combined team assists.
+run 1 | time=0.278s | status=200 | results=10
+run 2 | time=0.279s | status=200 | results=10
+run 3 | time=0.279s | status=200 | results=10
+run 4 | time=0.285s | status=200 | results=10
+run 5 | time=0.287s | status=200 | results=10
+
+Running O17: Who are the top 10 players in shot blocking average this season?
+run 1 | time=0.271s | status=200 | results=10
+run 2 | time=0.273s | status=200 | results=10
+run 3 | time=0.270s | status=200 | results=10
+run 4 | time=0.287s | status=200 | results=10
+run 5 | time=0.274s | status=200 | results=10
+
+Running O18: Which referees officiated the most games overall?
+run 1 | time=0.263s | status=200 | results=1
+run 2 | time=0.260s | status=200 | results=1
+run 3 | time=0.260s | status=200 | results=1
+run 4 | time=0.259s | status=200 | results=1
+run 5 | time=0.256s | status=200 | results=1
+
+Running O19: Which guards have the highest average rebounds per game (min. 10 games)?
+run 1 | time=0.426s | status=200 | results=1
+run 2 | time=0.408s | status=200 | results=1
+run 3 | time=0.397s | status=200 | results=1
+run 4 | time=0.394s | status=200 | results=1
+run 5 | time=0.404s | status=200 | results=1
+
+Running O20: What are the top 10 players with the most 25+ points from 2023?
+run 1 | time=0.271s | status=200 | results=10
+run 2 | time=0.269s | status=200 | results=10
+run 3 | time=0.272s | status=200 | results=10
+run 4 | time=0.272s | status=200 | results=10
+run 5 | time=0.273s | status=200 | results=10
+
+===== BATCH SUMMARY =====
+Batch 3 (queries 41-60)
+avg=0.272s min=0.255s max=0.426s
+
+Running G1: For every referee who officiated Olympiacos, show their win/loss record.
+run 1 | time=0.268s | status=200 | results=193
+run 2 | time=0.266s | status=200 | results=193
+run 3 | time=0.273s | status=200 | results=193
+run 4 | time=0.282s | status=200 | results=193
+run 5 | time=0.272s | status=200 | results=193
+
+Running G2: How many players per country played in 2023–24?
+run 1 | time=0.272s | status=200 | results=36
+run 2 | time=0.270s | status=200 | results=36
+run 3 | time=0.270s | status=200 | results=36
+run 4 | time=0.270s | status=200 | results=36
+run 5 | time=0.270s | status=200 | results=36
+
+Running G3: Who scored the most points in a single game per position?
+run 1 | time=0.595s | status=200 | results=3305
+run 2 | time=0.622s | status=200 | results=3305
+run 3 | time=0.612s | status=200 | results=3305
+run 4 | time=0.638s | status=200 | results=3305
+run 5 | time=0.645s | status=200 | results=3305
+
+Running G4: For each Panathinaikos player, how many times was he the team's top scorer?
+run 1 | time=0.291s | status=200 | results=102
+run 2 | time=0.283s | status=200 | results=102
+run 3 | time=0.281s | status=200 | results=102
+run 4 | time=0.282s | status=200 | results=102
+run 5 | time=0.280s | status=200 | results=102
+
+Running G5: Show total wins per team in the 2022–23 season.
+run 1 | time=0.257s | status=200 | results=18
+run 2 | time=0.257s | status=200 | results=18
+run 3 | time=0.257s | status=200 | results=18
+run 4 | time=0.256s | status=200 | results=18
+run 5 | time=0.256s | status=200 | results=18
+
+Running G6: What’s Nick Calathes' career win/loss count?
+run 1 | time=0.330s | status=200 | results=1
+run 2 | time=0.347s | status=200 | results=1
+run 3 | time=0.336s | status=200 | results=1
+run 4 | time=0.335s | status=200 | results=1
+run 5 | time=0.335s | status=200 | results=1
+
+Running G7: How many games were officiated by refs from each country?
+run 1 | time=0.304s | status=200 | results=35
+run 2 | time=0.298s | status=200 | results=35
+run 3 | time=0.293s | status=200 | results=35
+run 4 | time=0.303s | status=200 | results=35
+run 5 | time=0.297s | status=200 | results=35
+
+Running G8: List the number of Playoffs games played by each team.
+run 1 | time=0.265s | status=200 | results=40
+run 2 | time=0.260s | status=200 | results=40
+run 3 | time=0.260s | status=200 | results=40
+run 4 | time=0.261s | status=200 | results=40
+run 5 | time=0.260s | status=200 | results=40
+
+Running G9: Show Panathinaikos wins per head coach.
+run 1 | time=0.258s | status=200 | results=14
+run 2 | time=0.262s | status=200 | results=14
+run 3 | time=0.264s | status=200 | results=14
+run 4 | time=0.256s | status=200 | results=14
+run 5 | time=0.260s | status=200 | results=14
+
+Running G10: How many teams per country have participated since 2010?
+run 1 | time=0.283s | status=200 | results=19
+run 2 | time=0.268s | status=200 | results=19
+run 3 | time=0.273s | status=200 | results=19
+run 4 | time=0.273s | status=200 | results=19
+run 5 | time=0.273s | status=200 | results=19
+
+Running G11: Total points scored by Alba Berlin in 2023–24?
+run 1 | time=0.256s | status=200 | results=1
+run 2 | time=0.256s | status=200 | results=1
+run 3 | time=0.256s | status=200 | results=1
+run 4 | time=0.258s | status=200 | results=1
+run 5 | time=0.256s | status=200 | results=1
+
+Running G12: How many wins did each team have during 2023–24?
+run 1 | time=0.258s | status=200 | results=18
+run 2 | time=0.256s | status=200 | results=18
+run 3 | time=0.257s | status=200 | results=18
+run 4 | time=0.255s | status=200 | results=18
+run 5 | time=0.255s | status=200 | results=18
+
+Running G13: How many games per season did referee Vasiliki Tsarouha officiate?
+run 1 | time=0.255s | status=200 | results=7
+run 2 | time=0.257s | status=200 | results=7
+run 3 | time=0.254s | status=200 | results=7
+run 4 | time=0.256s | status=200 | results=7
+run 5 | time=0.257s | status=200 | results=7
+
+Running G14: Give the total number of assists per player in 2023–24.
+run 1 | time=0.270s | status=200 | results=288
+run 2 | time=0.272s | status=200 | results=288
+run 3 | time=0.270s | status=200 | results=288
+run 4 | time=0.275s | status=200 | results=288
+run 5 | time=0.269s | status=200 | results=288
+
+Running G15: What is the total fan attendance per team across all their games?
+run 1 | time=0.267s | status=200 | results=89
+run 2 | time=0.265s | status=200 | results=89
+run 3 | time=0.261s | status=200 | results=89
+run 4 | time=0.267s | status=200 | results=89
+run 5 | time=0.262s | status=200 | results=89
+
+Running G16: Show Mustapha Fall’s monthly total rebounds in 2023–24.
+run 1 | time=0.330s | status=200 | results=0
+run 2 | time=0.334s | status=200 | results=0
+run 3 | time=0.319s | status=200 | results=0
+run 4 | time=0.327s | status=200 | results=0
+run 5 | time=0.338s | status=200 | results=0
+
+Running G17: How many wins does each Olympiacos coach have since 2020?
+run 1 | time=0.258s | status=200 | results=2
+run 2 | time=0.257s | status=200 | results=2
+run 3 | time=0.261s | status=200 | results=2
+run 4 | time=0.258s | status=200 | results=2
+run 5 | time=0.259s | status=200 | results=2
+
+Running G18: How often did each team play overtime games?
+run 1 | time=0.282s | status=200 | results=65
+run 2 | time=0.267s | status=200 | results=65
+run 3 | time=0.265s | status=200 | results=65
+run 4 | time=0.268s | status=200 | results=65
+run 5 | time=0.263s | status=200 | results=65
+
+Running G19: What is the average point contribution per position for Efes in 2022–23?
+run 1 | time=0.264s | status=200 | results=3
+run 2 | time=0.259s | status=200 | results=3
+run 3 | time=0.264s | status=200 | results=3
+run 4 | time=0.261s | status=200 | results=3
+run 5 | time=0.260s | status=200 | results=3
+
+Running G20: List how many teams competed per season.
+run 1 | time=0.263s | status=200 | results=26
+run 2 | time=0.266s | status=200 | results=26
+run 3 | time=0.264s | status=200 | results=26
+run 4 | time=0.264s | status=200 | results=26
+run 5 | time=0.262s | status=200 | results=26
+
+===== BATCH SUMMARY =====
+Batch 4 (queries 61-80)
+avg=0.291s min=0.254s max=0.645s
+
+Running N1: Which teams have never reached the playoffs?
+run 1 | time=0.260s | status=200 | results=49
+run 2 | time=0.258s | status=200 | results=49
+run 3 | time=0.258s | status=200 | results=49
+run 4 | time=0.259s | status=200 | results=49
+run 5 | time=0.258s | status=200 | results=49
+
+Running N2: Which 2024–25 teams have no Greek players?
+run 1 | time=0.273s | status=200 | results=18
+run 2 | time=0.277s | status=200 | results=18
+run 3 | time=0.275s | status=200 | results=18
+run 4 | time=0.276s | status=200 | results=18
+run 5 | time=0.269s | status=200 | results=18
+
+Running N3: Which referees did not officiate any Panathinaikos games in 2023–24?
+run 1 | time=0.268s | status=200 | results=307
+run 2 | time=0.264s | status=200 | results=307
+run 3 | time=0.264s | status=200 | results=307
+run 4 | time=0.267s | status=200 | results=307
+run 5 | time=0.266s | status=200 | results=307
+
+Running N4: How many teams have never beaten Barcelona on the road since 2020?
+run 1 | time=0.324s | status=200 | results=1
+run 2 | time=0.287s | status=200 | results=1
+run 3 | time=0.299s | status=200 | results=1
+run 4 | time=0.287s | status=200 | results=1
+run 5 | time=0.287s | status=200 | results=1
+
+Running N5: Which teams participated in 2023–24 but not in 2024–25?
+run 1 | time=0.346s | status=200 | results=1
+run 2 | time=0.340s | status=200 | results=1
+run 3 | time=0.338s | status=200 | results=1
+run 4 | time=0.358s | status=200 | results=1
+run 5 | time=0.346s | status=200 | results=1
+
+Running N6: List Olympiacos players from 2023–24 who aren’t Greek.
+run 1 | time=0.260s | status=200 | results=12
+run 2 | time=0.258s | status=200 | results=12
+run 3 | time=0.262s | status=200 | results=12
+run 4 | time=0.260s | status=200 | results=12
+run 5 | time=0.260s | status=200 | results=12
+
+Running N7: Which players in 2023–24 never had a PIR above 10?
+run 1 | time=0.611s | status=200 | results=3112
+run 2 | time=0.686s | status=200 | results=3112
+run 3 | time=0.633s | status=200 | results=3112
+run 4 | time=0.708s | status=200 | results=3112
+run 5 | time=0.712s | status=200 | results=3112
+
+Running N8: Show the teams that Fenerbahce failed to defeat in both games of 2024–25.
+run 1 | time=0.500s | status=200 | results=3
+run 2 | time=0.515s | status=200 | results=3
+run 3 | time=0.505s | status=200 | results=3
+run 4 | time=0.479s | status=200 | results=3
+run 5 | time=0.489s | status=200 | results=3
+
+Running N9: Which players in 2023–24 never played more than 10 minutes?
+run 1 | time=0.281s | status=200 | results=2012
+run 2 | time=0.287s | status=200 | results=2012
+run 3 | time=0.280s | status=200 | results=2012
+run 4 | time=0.281s | status=200 | results=2012
+run 5 | time=0.283s | status=200 | results=2012
+
+Running N10: List teams that didn’t make the playoffs in 2023–24.
+run 1 | time=1.456s | status=200 | results=81
+run 2 | time=1.432s | status=200 | results=81
+run 3 | time=1.478s | status=200 | results=81
+run 4 | time=1.386s | status=200 | results=81
+run 5 | time=1.586s | status=200 | results=81
+
+Running N11: Which players never made a three-pointer in any game that they have played?
+run 1 | time=0.412s | status=200 | results=1180
+run 2 | time=0.451s | status=200 | results=1180
+run 3 | time=0.399s | status=200 | results=1180
+run 4 | time=0.395s | status=200 | results=1180
+run 5 | time=0.401s | status=200 | results=1180
+
+Running N12: Which referees didn’t officiate any 2023–24 Playoffs game?
+run 1 | time=0.266s | status=200 | results=279
+run 2 | time=0.270s | status=200 | results=279
+run 3 | time=0.266s | status=200 | results=279
+run 4 | time=0.264s | status=200 | results=279
+run 5 | time=0.267s | status=200 | results=279
+
+Running N13: Which teams had zero road wins in March 2023?
+run 1 | time=0.260s | status=200 | results=18
+run 2 | time=0.254s | status=200 | results=18
+run 3 | time=0.257s | status=200 | results=18
+run 4 | time=0.255s | status=200 | results=18
+run 5 | time=0.255s | status=200 | results=18
+
+Running N14: Which players were never in a starting lineup this season?
+run 1 | time=0.449s | status=200 | results=4577
+run 2 | time=0.441s | status=200 | results=4577
+run 3 | time=0.441s | status=200 | results=4577
+run 4 | time=0.437s | status=200 | results=4577
+run 5 | time=0.457s | status=200 | results=4577
+
+Running N15: Which countries had no players represented in 2023–24?
+run 1 | time=0.261s | status=200 | results=98
+run 2 | time=0.258s | status=200 | results=98
+run 3 | time=0.260s | status=200 | results=98
+run 4 | time=0.262s | status=200 | results=98
+run 5 | time=0.262s | status=200 | results=98
+
+Running N16: Name the players who didn’t play over 10 minutes in any game.
+run 1 | time=0.525s | status=200 | results=2958
+run 2 | time=0.521s | status=200 | results=2958
+run 3 | time=0.494s | status=200 | results=2958
+run 4 | time=0.483s | status=200 | results=2958
+run 5 | time=0.491s | status=200 | results=2958
+
+Running N17: Which teams missed out on the playoffs in 2023-24 although they won Real Madrid?
+run 1 | time=0.259s | status=200 | results=1
+run 2 | time=0.260s | status=200 | results=1
+run 3 | time=0.263s | status=200 | results=1
+run 4 | time=0.258s | status=200 | results=1
+run 5 | time=0.259s | status=200 | results=1
+
+Running N18: Which teams have always won at home against Panathinaikos?
+run 1 | time=0.294s | status=200 | results=4
+run 2 | time=0.292s | status=200 | results=4
+run 3 | time=0.286s | status=200 | results=4
+run 4 | time=0.289s | status=200 | results=4
+run 5 | time=0.288s | status=200 | results=4
+
+Running N19: Which teams have never lost a game by more than 30 points?
+run 1 | time=0.260s | status=200 | results=89
+run 2 | time=0.255s | status=200 | results=89
+run 3 | time=0.260s | status=200 | results=89
+run 4 | time=0.257s | status=200 | results=89
+run 5 | time=0.259s | status=200 | results=89
+
+Running N20: Show teams that didn’t field any player taller than 2.15 in 2023–24.
+run 1 | time=0.262s | status=200 | results=18
+run 2 | time=0.260s | status=200 | results=18
+run 3 | time=0.260s | status=200 | results=18
+run 4 | time=0.257s | status=200 | results=18
+run 5 | time=0.258s | status=200 | results=18
+
+===== BATCH SUMMARY =====
+Batch 5 (queries 81-100)
+avg=0.391s min=0.254s max=1.586s
+
+===== FINAL BENCHMARK SUMMARY =====
+S1: List all the matches played by Real Madrid.: avg=0.276s min=0.265s max=0.295s
+S2: Show me every game from the Playoffs.: avg=0.260s min=0.259s max=0.263s
+S3: Provide the full stats for Panathinaikos in each of their home games during the 2023-24 season.: avg=0.292s min=0.285s max=0.304s
+S4: Who were the referees assigned to each match?: avg=0.736s min=0.712s max=0.807s
+S5: List all Panathinaikos players for the 2023-24 season.: avg=0.260s min=0.259s max=0.261s
+S6: What is Ergin Ataman’s win percentage?: avg=0.259s min=0.257s max=0.261s
+S7: How many spectators attended each game?: avg=0.520s min=0.509s max=0.537s
+S8: I need Mike James’ assists and turnovers per match.: avg=0.273s min=0.270s max=0.279s
+S9: Show me the stats for Centers in round 25 of the 2023-24 season.: avg=0.316s min=0.308s max=0.326s
+S10: Which games went into overtime?: avg=0.259s min=0.256s max=0.261s
+S11: How many fans attended each match in the 2023–24 season?: avg=0.266s min=0.262s max=0.270s
+S12: Who were the home teams in round 34 of the 2023-24 Regular Season?: avg=0.262s min=0.260s max=0.265s
+S13: Which team captured the EuroLeague title in 2021–22?: avg=0.263s min=0.260s max=0.264s
+S14: On what dates did Panathinaikos face Real Madrid in 2023-24?: avg=0.258s min=0.256s max=0.260s
+S15: Where was the Olympiacos vs Fenerbahce match held in 2022-23?: avg=0.260s min=0.257s max=0.262s
+S16: How many points does Cedi Osman score on average per 10 minutes in 2024-25?: avg=0.258s min=0.255s max=0.261s
+S17: Which country is referee Luigi Lamonica from?: avg=0.254s min=0.253s max=0.255s
+S18: Show me all the games officiated by Anne Panther since 2018.: avg=0.257s min=0.255s max=0.258s
+S19: Who coached Maccabi Tel Aviv during the 2023–24 Playoffs run?: avg=0.258s min=0.255s max=0.261s
+S20: What are Carsen Edwards’ height and weight measurements?: avg=0.254s min=0.253s max=0.256s
+F1: List the 2023–24 season games where the losing team had a higher PIR than the winner.: avg=0.303s min=0.299s max=0.309s
+F2: Show me Bayern Munich games where they shot at least 40% on both 2-pointers and 3-pointers but still lost.: avg=0.259s min=0.256s max=0.263s
+F3: Give me Panathinaikos’ wins in which at least two of their guards scored over 15 points each.: avg=0.286s min=0.279s max=0.299s
+F4: What percentage of games each season did Olympiacos attempt more free throws than their opponents?: avg=0.272s min=0.266s max=0.278s
+F5: Which games had at least one non-center from both teams grabbing over 10 rebounds?: avg=0.327s min=0.318s max=0.340s
+F6: What is Panathinaikos’ win percentage in games officiated by Referee Uros Nikolic since 2015?: avg=0.268s min=0.264s max=0.273s
+F7: Show Chima Moneke’s points and assists in all games played in November 2024.: avg=0.258s min=0.256s max=0.260s
+F8: Which games did both Dimitris Diamantidis and Nick Calathes, as teammates, record more than 5 assists each?: avg=0.269s min=0.262s max=0.278s
+F9: What is the road win percentage of Greek teams versus Spanish teams?: avg=0.261s min=0.258s max=0.263s
+F10: List Panathinaikos players who made at least 3 three-pointers in a playoffs game.: avg=0.261s min=0.258s max=0.266s
+F11: Which players have the highest assist turnover ratio in 2023-24?: avg=0.263s min=0.261s max=0.266s
+F12: Show me matches where a team won despite scoring fewer than 60 points.: avg=0.262s min=0.261s max=0.264s
+F13: Find games where the losing team had more assists than the winner.: avg=0.314s min=0.309s max=0.317s
+F14: Which teams had the highest number of games in 2022-23 where they shot more three points than the opponent?: avg=0.287s min=0.284s max=0.289s
+F15: List games where a player had over 7 assists and no turnovers.: avg=0.265s min=0.262s max=0.267s
+F16: Which matches had either the home or away team scoring under 50 points?: avg=0.256s min=0.255s max=0.257s
+F17: Show me games where both teams hit at least 10 three-point shots.: avg=0.286s min=0.280s max=0.293s
+F18: Which referees officiated more than five Panathinaikos games in 2023–24?: avg=0.265s min=0.262s max=0.273s
+F19: Who scored over 20 points and grabbed at least 5 rebounds in a single game?: avg=0.489s min=0.471s max=0.504s
+F20: How many 2024–25 games did Panathinaikos come back to win after trailing in the third quarter?: avg=0.347s min=0.339s max=0.354s
+O1: Show the 10 biggest road wins (by point margin) for Panathinaikos.: avg=0.260s min=0.258s max=0.263s
+O2: List the top 10 scorers under 1.85m tall in a single 2023–24 game.: avg=0.262s min=0.261s max=0.264s
+O3: Who are the top 10 rebounders in a game against Real Madrid since 2020?: avg=0.275s min=0.270s max=0.281s
+O4: List the 10 best assist performances by Panathinaikos players in Final Four matches.: avg=0.260s min=0.259s max=0.261s
+O5: Which season had the highest ratio of road wins?: avg=0.265s min=0.264s max=0.269s
+O6: Show the 10 teams Olympiacos has beaten the most times.: avg=0.257s min=0.256s max=0.259s
+O7: Who played the most games with 30+ minutes in 2023–24?: avg=0.266s min=0.264s max=0.273s
+O8: Give me the 10 lowest-scoring games.: avg=0.257s min=0.255s max=0.260s
+O9: Which games had the highest total number of 3-point shots made by both teams?: avg=0.279s min=0.276s max=0.286s
+O10: Show the 10 Panathinaikos home games with the largest attendance.: avg=0.255s min=0.255s max=0.256s
+O11: Who were the top 10 total point scorers in 2023–24?: avg=0.262s min=0.261s max=0.265s
+O12: Who grabbed the most rebounds in a single game during 2023–24?: avg=0.270s min=0.268s max=0.274s
+O13: Which teams had the lowest average home crowd in 2024–25?: avg=0.258s min=0.257s max=0.260s
+O14: What are the 10 games with the largest winning margins?: avg=0.264s min=0.261s max=0.266s
+O15: Which players logged the most total minutes in 2023–24?: avg=0.265s min=0.261s max=0.269s
+O16: List the top 10 games with the highest combined team assists.: avg=0.282s min=0.278s max=0.287s
+O17: Who are the top 10 players in shot blocking average this season?: avg=0.275s min=0.270s max=0.287s
+O18: Which referees officiated the most games overall?: avg=0.260s min=0.256s max=0.263s
+O19: Which guards have the highest average rebounds per game (min. 10 games)?: avg=0.406s min=0.394s max=0.426s
+O20: What are the top 10 players with the most 25+ points from 2023?: avg=0.272s min=0.269s max=0.273s
+G1: For every referee who officiated Olympiacos, show their win/loss record.: avg=0.272s min=0.266s max=0.282s
+G2: How many players per country played in 2023–24?: avg=0.270s min=0.270s max=0.272s
+G3: Who scored the most points in a single game per position?: avg=0.622s min=0.595s max=0.645s
+G4: For each Panathinaikos player, how many times was he the team's top scorer?: avg=0.283s min=0.280s max=0.291s
+G5: Show total wins per team in the 2022–23 season.: avg=0.256s min=0.256s max=0.257s
+G6: What’s Nick Calathes' career win/loss count?: avg=0.337s min=0.330s max=0.347s
+G7: How many games were officiated by refs from each country?: avg=0.299s min=0.293s max=0.304s
+G8: List the number of Playoffs games played by each team.: avg=0.261s min=0.260s max=0.265s
+G9: Show Panathinaikos wins per head coach.: avg=0.260s min=0.256s max=0.264s
+G10: How many teams per country have participated since 2010?: avg=0.274s min=0.268s max=0.283s
+G11: Total points scored by Alba Berlin in 2023–24?: avg=0.256s min=0.256s max=0.258s
+G12: How many wins did each team have during 2023–24?: avg=0.256s min=0.255s max=0.258s
+G13: How many games per season did referee Vasiliki Tsarouha officiate?: avg=0.256s min=0.254s max=0.257s
+G14: Give the total number of assists per player in 2023–24.: avg=0.271s min=0.269s max=0.275s
+G15: What is the total fan attendance per team across all their games?: avg=0.264s min=0.261s max=0.267s
+G16: Show Mustapha Fall’s monthly total rebounds in 2023–24.: avg=0.329s min=0.319s max=0.338s
+G17: How many wins does each Olympiacos coach have since 2020?: avg=0.259s min=0.257s max=0.261s
+G18: How often did each team play overtime games?: avg=0.269s min=0.263s max=0.282s
+G19: What is the average point contribution per position for Efes in 2022–23?: avg=0.262s min=0.259s max=0.264s
+G20: List how many teams competed per season.: avg=0.264s min=0.262s max=0.266s
+N1: Which teams have never reached the playoffs?: avg=0.258s min=0.258s max=0.260s
+N2: Which 2024–25 teams have no Greek players?: avg=0.274s min=0.269s max=0.277s
+N3: Which referees did not officiate any Panathinaikos games in 2023–24?: avg=0.266s min=0.264s max=0.268s
+N4: How many teams have never beaten Barcelona on the road since 2020?: avg=0.297s min=0.287s max=0.324s
+N5: Which teams participated in 2023–24 but not in 2024–25?: avg=0.346s min=0.338s max=0.358s
+N6: List Olympiacos players from 2023–24 who aren’t Greek.: avg=0.260s min=0.258s max=0.262s
+N7: Which players in 2023–24 never had a PIR above 10?: avg=0.670s min=0.611s max=0.712s
+N8: Show the teams that Fenerbahce failed to defeat in both games of 2024–25.: avg=0.498s min=0.479s max=0.515s
+N9: Which players in 2023–24 never played more than 10 minutes?: avg=0.282s min=0.280s max=0.287s
+N10: List teams that didn’t make the playoffs in 2023–24.: avg=1.468s min=1.386s max=1.586s
+N11: Which players never made a three-pointer in any game that they have played?: avg=0.411s min=0.395s max=0.451s
+N12: Which referees didn’t officiate any 2023–24 Playoffs game?: avg=0.266s min=0.264s max=0.270s
+N13: Which teams had zero road wins in March 2023?: avg=0.256s min=0.254s max=0.260s
+N14: Which players were never in a starting lineup this season?: avg=0.445s min=0.437s max=0.457s
+N15: Which countries had no players represented in 2023–24?: avg=0.261s min=0.258s max=0.262s
+N16: Name the players who didn’t play over 10 minutes in any game.: avg=0.503s min=0.483s max=0.525s
+N17: Which teams missed out on the playoffs in 2023-24 although they won Real Madrid?: avg=0.260s min=0.258s max=0.263s
+N18: Which teams have always won at home against Panathinaikos?: avg=0.290s min=0.286s max=0.294s
+N19: Which teams have never lost a game by more than 30 points?: avg=0.258s min=0.255s max=0.260s
+N20: Show teams that didn’t field any player taller than 2.15 in 2023–24.: avg=0.259s min=0.257s max=0.262s
+
+===== GLOBAL STATS =====
+overall avg=0.309s min=0.253s max=1.586s total queries=100
+
+
+===== BATCH SUMMARY =====
+Batch 1 (queries 1-20)
+avg=0.302s min=0.253s max=0.807s
+
+===== BATCH SUMMARY =====
+Batch 2 (queries 21-40)
+avg=0.290s min=0.255s max=0.504s
+
+===== BATCH SUMMARY =====
+Batch 3 (queries 41-60)
+avg=0.272s min=0.255s max=0.426s
+
+===== BATCH SUMMARY =====
+Batch 4 (queries 61-80)
+avg=0.291s min=0.254s max=0.645s
+
+===== BATCH SUMMARY =====
+Batch 5 (queries 81-100)
+avg=0.391s min=0.254s max=1.586s
